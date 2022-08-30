@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'estafetaApp'
+    'estafetaApp',
+    'account.apps.AccountConfig',
+    "phonenumber_field",
+    'taggit',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +73,7 @@ TEMPLATES = [
     },
 ]
 
+AUTH_USER_MODEL = 'account.Account'
 WSGI_APPLICATION = 'estafeta.wsgi.application'
 
 
