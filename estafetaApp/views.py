@@ -1,5 +1,16 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from .forms import *
+
+
+
+from django.shortcuts import render, redirect
+
+
+from .forms import *
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse, Http404, HttpResponseNotFound
+from .forms import *
+from django.contrib.auth import authenticate, login
 
 def index(request):
     return render(request, 'index.html')
@@ -26,23 +37,19 @@ def login_page(request):
             print('Try again! username or password is incorrect')
     # регистрация
     elif request.method == 'POST' and 'btnform1' in request.POST:
-        send_mail(
-            'Test',
-            'Всё робит)',
-            'korotikhin84@mail.ru',
-            ['gaamer557@gmail.com'],
-            fail_silently=False,
-        )
-        if form.is_valid():
-            form.save()
-            email = form.cleaned_data.get('email')
-            first_name = form.cleaned_data.get('first_name')
-            username = email
-            password = form.cleaned_data.get('password1')
-            user = authenticate(email=email, password=password, first_name=first_name)
-            # login(request, user)
-            return redirect('/login/')
-        else:
-            print(form.errors)
+        print("------------")
+
+        print(form)
+        print("------------")
+
+        form.save()
+        email = form.cleaned_data.get('email')
+        first_name = form.cleaned_data.get('first_name')
+        username = email
+        password = form.cleaned_data.get('password1')
+        user = authenticate(email=email, password=password, first_name=first_name)
+        # login(request, user)
+        return redirect('/login/')
+
 
     return render(request, 'signin.html', context)
