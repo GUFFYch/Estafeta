@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST" action="." id="signin-form" class="uk-text-center">
+        {% csrf_token %}
+            <h3 style="text-align: center; margin-top: 5%">Войти</h3>
+            <div style="width: 80%; margin:auto">
+                <div class="uk-flex-column inputs uk-margin-medium-bottom">
+                    <label>Почта</label>
+                    <input type="text" name="email" class="uk-input uk-border uk-border-rounded" placeholder="email@mail.com">
+                </div>
+                <div class="uk-flex-column inputs">
+                    <label>Пароль</label>
+                    <input type="password" name="password" placeholder="Password..." class="uk-input uk-border uk-border-rounded">
+                </div>
+            </div>
+            <br>
+            <button class="uk-button uk-button-secondary uk-width-1-2 uk-margin" type="submit" name="btnform2">Войти</button>
+
+    </form>
+</body>
+</html>
