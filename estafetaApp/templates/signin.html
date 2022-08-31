@@ -10,285 +10,58 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.13.10/dist/css/uikit.min.css" />
 	<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 </head>
-
+<style>
+	*{
+		trasform: 0.5s;	
+	}
+</style>
 <body oncontextmenu='return false' class='snippet-body' style="width: 80%; margin: auto; margin-top: 7%">
 	<div class="container" style="margin-top: 5%">
 		<h1 style="font-size:30px; text-align: center; font-weight:700; color: #170F49;">Create account</h3>
-			<p style="text-align: center; margin-top: 2%; color: #6F6C90;">Please fill the form below to have access to
-				all functions. Feel free to add as much detail as needed.</p>
-			<br>
-			<br>
-			<br>
-			<form data-multi-step class="multi-step-form">
+		<p style="text-align: center; margin-top: 2%; color: #6F6C90;">Please fill the form below to have access to all functions. Feel free to add as much detail as needed.</p>
+		<div style="width: 50%; margin:auto; border: solid black 2px; border-radius: 10px">
 
-				<div class="cards" data-step>
+				<form method="POST" action="." id="signup-form" style=" text-align: center;">
+					{% csrf_token %}
+					<h3 style="text-align: center; margin-top: 5%">Регистрация</h3>
+					<div class="inputs" style="width: 80%; margin: 0 auto">
+						<div class="uk-flex uk-flex-center uk-text-center">
+							<div class="uk-width-1-2" style="margin: 0 1%">
+								<label>Почта</label>
+								{{form.email}}
+							</div>
 
-					<h2 class="step-title">This is step 1</h2>
-
-					<h3 class="big_front_text">Contact details</h3>
-					<p class="small_gray_text">Please use only right contact information about you</p>
-
-					<div class="form-group">
-						<div class="uk-width-1-2@s in">
-							<p for="name" style="margin: 0;">Name</p>
-							<input type="text" name="name" id="name" class="uk-input uk-form-width-medium uk-form-large">
+							<div class="uk-width-1-2" style="margin: 0 1%">
+								<label>Имя</label>
+								{{form.first_name}}
+							</div>
 						</div>
-
-						<div class="uk-width-1-2@s in">
-							<p for="email" style="margin: 0;">Email</p>
-							<input type="email" name="email" id="email" class="uk-input uk-form-width-medium uk-form-large">
-						</div>
-					</div>
-
-
-					<div class="form-group">
-						<div class="uk-width-1-2@s in">
-							<p for="phone" style="margin: 0;">Phone</p>
-							<input type="tel" name="phone" id="phone" class="uk-input uk-form-width-medium uk-form-large">
-						</div>
-						<div class="uk-width-1-2@s in">
-							<p for="country" style="margin: 0;">Country</p>
-							<input type="text" name="country" id="country" class="uk-input uk-form-width-medium uk-form-large">
+						<br>
+						<div class="uk-flex uk-flex-center uk-text-center">
+							<div class="uk-width-1-2" style="margin: 0 1%">
+								<label>Пароль</label>
+							{{form.password1}}
+							</div>
+							<div class="uk-width-1-2" style="margin: 0 1%">
+								<label>Повторите пароль</label>
+								{{form.password2}}
+							</div>
 						</div>
 					</div>
+					
+					<button class="uk-button uk-button-secondary uk-width-1-2 uk-margin" id="signinbtn" type="submit" name="btnform1">Зарегестрироваться</button>
+					{% csrf_token %}
+				</form>
 
-					<div class="form-group">
-						<div class="uk-width-1-2@s in">
-							<p for="password" style="margin: 0;">Password</p>
-							<input type="password" name="password" id="password" class="uk-input uk-form-width-medium uk-form-large">
-						</div>
-						<div class="uk-width-1-2@s in">
-							<p for="password" style="margin: 0;">Password</p>
-							<input type="password" name="password" id="password" class="uk-input uk-form-width-medium uk-form-large">
-						</div>
-					</div>
-
-					<button type="button" data-next>Next</button>
-
-				</div>
-
-				<div class="cards" data-step>
-
-					<h3 class="step-title">This is step 2</h3>
-
-					<div class="form-group">
-						<label for="address">Address</label>
-						<input type="text" name="address" id="address">
-					</div>
-
-					<div class="form-group">
-						<label for="city">City</label>
-						<input type="text" name="city" id="city">
-					</div>
-
-					<div class="form-group">
-						<label for="zipcode">Zip Code</label>
-						<input type="text" name="zipcode" id="zipcode">
-					</div>
-
-					<button type="button" data-previous>Previous</button>
-					<button type="button" data-next>Next</button>
-
-				</div>
-
-				<div class="cards" data-step>
-
-					<h3 class="step-title">This is step 3</h3>
-
-					<div class="form-group">
-						<label for="firstName">First Name</label>
-						<input type="text" name="firstName" id="firstName">
-					</div>
-
-					<div class="form-group">
-						<label for="lastName">Last Name</label>
-						<input type="text" name="lastName" id="lastName">
-					</div>
-
-					<button type="button" data-previous>Previous</button>
-					<button type="submit">Submit</button>
-
-				</div>
-
-			</form>
-
+		</div>
 	</div>
 	</div>
 
 
 </body>
 
-<script type='text/javascript'
-	src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
-
-<style>
-	.in {
-
-		/* padding-right: 10%; */
-	}
-
-	.in > p {
-		font-family: 'DM Sans';
-		font-style: normal;
-		font-weight: 500;
-		font-size: 18px;
-		line-height: 20px;
-
-		color: #170F49;
-
-	}
-
-	.in > input {
-		box-sizing: border-box;
-		background: url("https://www.figma.com/file/ozUmplMVUmORFICbq2SGtp/Untitled?node-id=0%3A5423") no-repeat right;
-		border: 1px solid #EFF0F7;
-		box-shadow: 0px 2px 6px rgba(19, 18, 66, 0.07);
-		border-radius: 46px;
-		margin-left: 5%;
-	}
-
-	.small_gray_text {
-		font-family: 'DM Sans';
-		font-style: normal;
-		font-weight: 400;
-		font-size: 18px;
-		line-height: 30px;
-		color: #6F6C90;
-		margin-top: 0;
-	}
-
-	.big_front_text {
-		font-family: 'DM Sans';
-		font-style: normal;
-		font-weight: 700;
-		font-size: 24px;
-		line-height: 35px;
-		margin: 0;
-
-		color: #170F49;
-	}
-
-	.cards {
-		margin: auto;
-		width: 596.13px;
-		height: 362.61px;
-		animation: fade 250ms ease-in-out forwards;
-	}
-
-	.form-group {
-		display: flex;
-		margin-bottom: .5rem;
-		gap: .25em;
-
-	}
-
-	.form-group:last-child {
-		margin: 0;
-	}
-
-	.step-title {
-		margin: 0;
-		margin-bottom: 1rem;
-		text-align: center;
-	}
-
-	.cards.active {
-		animation: slide 250ms 125ms ease-in-out both;
-	}
-
-	.multi-step-form {
-
-		box-sizing: border-box;
-		margin: auto;
-		width: 698px;
-		height: 606px;
-
-		background: #FFFFFF;
-
-		border: 1px solid #EFF0F7;
-
-		box-shadow: 0px 5px 16px rgba(8, 15, 52, 0.06);
-		border-radius: 34px;
-	}
-
-	.hide {
-		display: none;
-	}
-
-	@keyframes slide {
-		0% {
-			transform: translateX(200%);
-			opacity: 0;
-		}
-
-		100% {
-			transform: translateX(0);
-			opacity: 1;
-		}
-	}
-
-	@keyframes fade {
-		0% {
-			transform: scale(1);
-			opacity: 1;
-		}
-
-		50% {
-			transform: scale(.75);
-			opacity: 0;
-		}
-
-		100% {
-			opacity: 0;
-			transform: scale(0);
-		}
-	}
-</style>
-
-<script>
-
-	const multiStepForm = document.querySelector("[data-multi-step]")
-	const formSteps = [...multiStepForm.querySelectorAll("[data-step]")]
-	let currentStep = formSteps.findIndex(step => {
-		return step.classList.contains("active")
-	})
-
-	if (currentStep < 0) {
-		currentStep = 0
-		showCurrentStep()
-	}
-
-	multiStepForm.addEventListener("click", e => {
-		let incrementor
-		if (e.target.matches("[data-next]")) {
-			incrementor = 1
-		} else if (e.target.matches("[data-previous]")) {
-			incrementor = -1
-		}
-
-		if (incrementor == null) return
-
-		const inputs = [...formSteps[currentStep].querySelectorAll("input")]
-		const allValid = inputs.every(input => input.reportValidity())
-		if (allValid) {
-			currentStep += incrementor
-			showCurrentStep()
-		}
-	})
-
-	formSteps.forEach(step => {
-		step.addEventListener("animationend", e => {
-			formSteps[currentStep].classList.remove("hide")
-			e.target.classList.toggle("hide", !e.target.classList.contains("active"))
-		})
-	})
-
-	function showCurrentStep() {
-		formSteps.forEach((step, index) => {
-			step.classList.toggle("active", index === currentStep)
-		})
-	}
-
+<script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'>
 </script>
+
 
 </html>
