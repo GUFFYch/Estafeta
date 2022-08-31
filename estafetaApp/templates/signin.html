@@ -454,8 +454,12 @@
 			}
 			if (n === (x.length - 1)) {
 				document.getElementById("nextBtn").innerHTML = "Далее";
+				document.getElementById("nextBtn").style.display = "none";
+
 			} else {
 				document.getElementById("nextBtn").innerHTML = "Далее";
+				document.getElementById("nextBtn").style.display = "inline";
+
 			}
 			fixStepIndicator(n)
 		}
@@ -481,7 +485,7 @@
 			let i, x = document.getElementsByClassName("step");
 	
 			if (n != x.length - 1) {
-				progressBar.style.setProperty("--width-nonstatic", `${(n+1) * 40}%`);
+				progressBar.style.setProperty("--width-nonstatic", `${(n+1) * 30}%`);
 			} else {
 				progressBar.style.setProperty("--width-nonstatic", "100%");
 			}
