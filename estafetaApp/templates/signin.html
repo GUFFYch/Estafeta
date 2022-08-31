@@ -104,6 +104,110 @@
 			text-align: center;
 			color: #6F6C90;
 		}
+
+		.section-m{
+
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			flex-wrap: wrap;
+			gap: 20px;
+		}
+
+		.tile{
+			height: 20vh;
+    		width: 20vw;
+			position: relative;
+			background: #FFFFFF;
+			border: 1px solid #EFF0F7;
+			box-shadow: 0px 2px 6px rgba(19, 18, 66, 0.07);
+			border-radius: 16px;
+		}
+
+		.inp{
+			-webkit-appearance: none;
+			height: 100%;
+			width: 100%;
+			background-color: #ffffff;
+			border-radius: 10px;
+			cursor: pointer;
+			border: 3px solid transparent;
+			outline: none;
+			box-shadow: 15px 15px 25px rgba(2,28,53,0.05);
+		}
+
+		.inp:after{
+			font-family: "Font Awesome 5 Free";
+			font-weight: 400;
+			content: "\f111";
+			font-size: 22px;
+			top: 10px;
+			left: 10px;
+			color: #e2e6f3;
+		}
+
+		.inp:hover{
+			transform: scale(1.08);
+		}
+
+		.inp:checked{
+			border: 3px solid #478bfb;
+		}
+
+		.inp:checked:after{
+			font-weight: 900;
+			content: "\f058";
+			color: #478bfb;
+		}
+
+		.lab{
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			gap: 20px;
+			height: 90%;
+			width: 100%;
+			position: absolute;
+			bottom: 0;
+			cursor: pointer;
+		}
+
+		.lab .fas{
+			font-size: 60px;
+			color: #2c2c51;
+		}
+		.inp:checked + .lab .fas{
+			animation: grow 0.5s;
+		}
+
+		@keyframes grow{
+			50%{
+				font-size: 80px;
+			}
+		}
+
+		.lab h6{
+			font-family: "Poppins",sans-serif;
+			font-size: 15px;
+			font-weight: 400;
+			color: #7b7b93;
+		}
+		.text-in {
+			font-family: 'DM Sans';
+			font-style: normal;
+			font-weight: 500;
+			font-size: 18px;
+			line-height: 20px;
+			color: #170F49;
+		}
+
+		.btn-sub {
+			background: #3434FF;
+			box-shadow: 0px 3px 12px rgba(74, 58, 255, 0.18);
+			border-radius: 56px;
+		}
+
 	</style>
 	
 	<body>
@@ -119,7 +223,7 @@
 						<a style="background-color: #2652bf; border-color: #2652bf" class="step" onclick="surTab(0)"></a>
 						<a class="step" onclick="surTab(1)"></a>
 						<a class="step" onclick="surTab(2)"></a>
-						<!-- <a class="step" onclick="surTab(4)"></a> -->
+						<a class="step" onclick="surTab(3)"></a>
 					</div>
 
 					<hr>
@@ -138,7 +242,7 @@
 
 									<label class="uk-form-label" for="form-stacked-text">Name</label>
 									<div class="uk-inline uk-form-controls" style="display: grid;">
-										<span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+										<span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: user"></span>
 										<input class="uk-input" type="text" placeholder="John Carter">
 									</div>
 								</div>
@@ -147,7 +251,7 @@
 
 									<label class="uk-form-label" for="form-stacked-text">Email</label>
 									<div class="uk-inline uk-form-controls" style="display: grid;">
-										<span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+										<span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: mail"></span>
 										<input class="uk-input" type="text" placeholder="Email address">
 									</div>
 								</div>
@@ -161,7 +265,7 @@
 
 									<label class="uk-form-label" for="form-stacked-text">Phone Number</label>
 									<div class="uk-inline uk-form-controls" style="display: grid;">
-										<span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+										<span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: receiver"></span>
 										<input class="uk-input" type="text" placeholder="(123) 456 - 7890">
 									</div>
 								</div>
@@ -170,7 +274,7 @@
 
 									<label class="uk-form-label" for="form-stacked-text">Country</label>
 									<div class="uk-inline uk-form-controls" style="display: grid;">
-										<span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+										<span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: world"></span>
 										<input class="uk-input" type="text" placeholder="Country">
 									</div>
 								</div>
@@ -202,93 +306,131 @@
 	
 	
 						</div>
+
+
+
+
 	
 						<div class="tab">
-							<h2 class="uk-text-center">Оплата</h2>
-							<h4 class="uk-text-center">Введите данные для оплаты</h4>
+
+							<p class="uk-text-left larg" style="font-size: 24px;">Our subjects</h2>
+							<p class="uk-text-left small">Please select which subjects you are interested in</p>
 							<br>
-							<div class="uk-width-1-1 uk-flex uk-flex-center">
-								<div style="display: inline-block; margin: 0 10px" class="uk-width-1-3">
-	
-									<label>Расчетный счет</label>
-									<br>
-									<input type="text" id="companyInput" name="payment_account" maxlength="50"
-										class="form-control" placeholder="{{creator.payment_account}}"
-										value="{{creator.payment_account}}">
-								</div>
-								<div style="display: inline-block; margin: 0 10px" class="uk-width-1-3">
-	
-									<label>Форма регистрации</label>
-									<br>
-									<input type="text" id="companyInput" name="reg_form" maxlength="50" class="form-control"
-										placeholder="{{creator.reg_form}}" value="{{creator.reg_form}}">
-								</div>
-							</div>
-							<br>
-							<div class="uk-width-1-1 uk-flex uk-flex-center">
-								<div style="display: inline-block; margin: 0 10px" class="uk-width-1-3">
-	
-									<label>БИК</label>
-									<br>
-									<input type="text" id="companyInput" name="bik" maxlength="50" class="form-control"
-										placeholder="{{creator.bik}}" value="{{creator.bik}}">
-								</div>
-	
-								<div style="display: inline-block; margin: 0 10px" class="uk-width-1-3">
-	
-									<label>korr_check</label>
-									<br>
-									<input type="text" id="companyInput" name="korr_check" maxlength="50"
-										class="form-control" placeholder="{{creator.korr_check}}"
-										value="{{creator.korr_check}}">
-								</div>
-							</div>
-						</div>
-	
-						<div class="tab">
-							<h2 class="uk-text-center">Подтвердите почту</h2>
-							<h4 class="uk-text-center">Выбери уникальное название магазина, который отражает твой стиль</h4>
-							<br>
-							<div class="uk-width-4-5 uk-flex uk-flex-center" style="margin: 0 auto">
-								<div style="display: inline-block; margin: 0 10px; border: 1px solid; padding: 5%;"
-									class="uk-width-4-5 uk-border-rounded">
-									<label>На вашу почту пришло письмо для подтверждения </label>
-									<br>
-									<label>перед тем как продолжить создание магазина</label>
-									<br>
-									<button class="uk-button uk-button-default uk-margin-small-bottom"
-										style="text-transform: none;background-color: #e4e4e4">Отправить еще раз</button>
-									<br>
-									<button class="uk-button uk-button-text" style="text-transform: none;">Изменить
-										почту</button>
-									<div class="uk-width-4-5 uk-flex uk-flex-center" style="margin: 5px auto">
-										<div style="display: inline-block; margin: 0 10px"
-											class="uk-width-1-2 uk-text-center">
-											{{form.checking_account.label}}: <br> {{form.checking_account}}
+
+							<div class="uk-width-4-5 uk-flex uk-flex-between section-m" style="margin: 0 auto">
+
+
+										<div class="tile">
+											<input type="checkbox" name="sports" id="sport1" class="inp">
+											<label for="sport1" class="lab">
+												<img src="https://cdn-icons-png.flaticon.com/512/3281/3281412.png" alt="" width="80px" height="80px">
+												<p class="text-in">Business</p>
+											</label>
 										</div>
+										<div class="tile">
+											<input type="checkbox" name="sports" id="sport2" class="inp">
+											<label for="sport2" class="lab">
+												<img src="https://cdn-icons-png.flaticon.com/512/2885/2885417.png" alt="" width="80px" height="80px">
+												<p class="text-in">Sociology</p>
+											</label>
+										</div>
+										<div class="tile">
+											<input type="checkbox" name="sports" id="sport3" class="inp">
+											<label for="sport3" class="lab">
+												<img src="https://cdn-icons-png.flaticon.com/512/4844/4844459.png" alt="" width="80px" height="80px">
+												<p class="text-in">Economics</p>
+											</label>
+										</div>
+										<div class="tile">
+											<input type="checkbox" name="sports" id="sport4" class="inp">
+											<label for="sport4" class="lab">
+												<img src="https://cdn-icons-png.flaticon.com/512/2847/2847532.png" alt="" width="80px" height="80px">
+												<p class="text-in">Math</p>
+											</label>
+										</div>
+										
+										
+
+							</div>
+
+							</div>
 	
-									</div>
+							<br>
+	
+						<div class="tab">
+							<p class="uk-text-left larg" style="font-size: 24px;">What’s your level of knowledge</h2>
+								<p class="uk-text-left small">Please select the level you have in mind</p>
+								<br>
+							<div class="uk-width-4-5 uk-flex uk-flex-center  section-m" style="margin: 0 auto">
+								<div class="tile">
+									<input type="checkbox" name="knowledge" id="knowledge1" class="inp">
+									<label for="knowledge1" class="lab">
+										<img src="https://cdn-icons-png.flaticon.com/512/1319/1319861.png" alt="" width="80px" height="80px">
+										<p class="text-in">Pro</p>
+									</label>
+								</div>
+								<div class="tile">
+									<input type="checkbox" name="knowledge" id="knowledge2" class="inp">
+									<label for="knowledge2" class="lab">
+										<img src="https://cdn-icons-png.flaticon.com/512/981/981837.png" alt="" width="80px" height="80px">
+										<p class="text-in">Amateur</p>
+									</label>
+								</div>
+								<div class="tile">
+									<input type="checkbox" name="knowledge" id="knowledge3" class="inp">
+									<label for="knowledge3" class="lab">
+										<img src="https://cdn-icons-png.flaticon.com/512/1721/1721611.png" alt="" width="80px" height="80px">
+										<p class="text-in">Normal</p>
+									</label>
+								</div>
+								<div class="tile">
+									<input type="checkbox" name="knowledge" id="knowledge4" class="inp">
+									<label for="knowledge4" class="lab">
+										<img src="https://cdn-icons-png.flaticon.com/512/5588/5588107.png" alt="" width="80px" height="80px">
+										<p class="text-in">Beginner</p>
+									</label>
 								</div>
 							</div>
 						</div>
-						<br>
-						<br>
-						<div style="overflow:auto;" id="next-previous">
-							<div style="float:right;">
-								<button class="uk-button uk-button-default" type="button" id="prevBtn"
-									onclick="nextPrev(-1)">
-									Назад
-								</button>
-								{% csrf_token %}
-								<button class="uk-button uk-button-default" type="button" id="nextBtn" onclick="nextPrev(1)"
-									name="profile_saver1">
-									Далее
-								</button>
-	
-							</div>
+
+						<div class="tab uk-text-center">
+
+							<img src="https://cdn-icons-png.flaticon.com/512/8058/8058613.png" alt="" width="120px" height="120px">
+
+
+							<p class="uk-text-center larg" style="font-size: 24px;">Submit your  registration</h2>
+							<p class="uk-text-center small">Please review all the information you previously typed in the past steps, and if all is okay, submit your message to finish registration</p>
+							<br>
+
+							<button class="uk-button uk-button-primary uk-button-large btn-sub" type="submit">Submit</button>
+							
 						</div>
-	
+
+
+						<br>
+						<br>
+					</div>
+
 					</form>
+				</div>
+				<br>
+				<br>
+				<div style="overflow:auto;" id="next-previous">
+					<div style="float:left;">
+
+						<button class="uk-button uk-button-default " type="button" id="prevBtn"
+							onclick="nextPrev(-1)">
+							Назад
+						</button>
+						</div>
+						<div style="float:right;">
+
+						<button class="uk-button uk-button-default" type="button" id="nextBtn" onclick="nextPrev(1)"
+							name="profile_saver1">
+							Далее
+						</button>
+
+					</div>
 				</div>
 	
 	</body>
@@ -359,6 +501,7 @@
 			}
 		}
 	</script>
+	
 
 </body>
 
