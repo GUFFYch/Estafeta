@@ -1,16 +1,33 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from .forms import *
-
-
-
 from django.shortcuts import render, redirect
-
 
 from .forms import *
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse, Http404, HttpResponseNotFound
 from .forms import *
 from django.contrib.auth import authenticate, login
+from account.models import Account
+
+
+
+
+
+
+def profile_page(request):
+    content = {}
+    try:
+        email = request.user
+        person = Account.objects.get(email=email)
+        content['user'] = person
+        return render(request, 'profile.html', content)
+
+    except Account.DoesNotExist:
+        print("---------------")
+        print("PROBLEMS")
+        print("---------------")
+
+
 
 def index(request):
     return render(request, 'index.html')
