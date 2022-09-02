@@ -53,6 +53,17 @@ def login_page(request):
         'form': form
     }
     # вход
+
+    if request.method == 'POST' and 'profile_saver3' in request.POST:
+       
+        form.save()
+        email = form.cleaned_data.get('email')
+        first_name = form.cleaned_data.get('name')
+        password = form.cleaned_data.get('password1')
+        user = authenticate(email=email, password=password, first_name=first_name)
+        # login(request, user)
+        return redirect('/login/')
+
     if request.method == 'POST' and 'btnform2' in request.POST:
         print(request.POST)
         email = request.POST.get('email')

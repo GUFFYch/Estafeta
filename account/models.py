@@ -31,31 +31,17 @@ class MyAccountManager(BaseUserManager):
 
 
 class Account(AbstractBaseUser):
-    username = models.CharField(max_length=20, default='', unique=False)
     email = models.EmailField(default='', unique=True)
     first_name = models.CharField(max_length=20, default='')
-    last_name = models.CharField(max_length=30, default='')
     phone = models.IntegerField(default='1')
-    city = models.CharField(max_length=30, default='')
-    userImage = models.ImageField(upload_to='images/', default='images/default.png')
+    country = models.CharField(max_length=50, default='')
     is_admin = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-    inn = models.IntegerField(default=0)
-    name_small = models.CharField(max_length=20,default='')
-    nameFull = models.CharField(max_length=20,default='')
-    payment_account = models.IntegerField(default=0)
-    reg_form = models.CharField(max_length=20,default='')
-    inn = models.IntegerField(default=0)
-    ogrn = models.IntegerField(default=0)
-    korr_check = models.IntegerField(default=0)
-    kpp = models.IntegerField(default=0)
-    index = models.IntegerField(default=0)
-    bik = models.IntegerField(default=0)
-    checking_account = models.IntegerField(default=0)
-    fiz_adress = models.CharField(max_length=9999, default='')
-    street = models.CharField(max_length=9999,default='')
+    subjects = models.CharField(default='-', max_length=255)
+    knowledge = models.TextField(max_length=2)
+    
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name']
