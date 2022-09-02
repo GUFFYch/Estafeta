@@ -7,11 +7,13 @@ from django.forms import ModelForm
 # Create your models here.
 class Tests(models.Model):
     name = models.CharField(max_length=100)  # название
-    subjects = models.CharField(max_length=100) # темы
-    levels = models.CharField(max_length=50) # для каких уровней
+    subject = models.CharField(max_length=100) # темы
+    level = models.CharField(max_length=50) # для каких уровней
     link = models.CharField(max_length=500) # ссылка на контест
-    date_stat = models.DateField(max_length=50) # дата начала теста
+    date_start = models.DateField(max_length=50) # дата начала теста
+    time_start =models.TimeField(auto_now=False, auto_now_add=False) # время начала теста
     date_end = models.DateField(max_length=50) # дата конца теста
+    time_end = models.TimeField(auto_now=False, auto_now_add=False) # время конца теста
 
 class Team(models.Model):
     name = models.CharField(max_length=100)  # название

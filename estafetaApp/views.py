@@ -38,9 +38,21 @@ def profile_page(request):
         print("---------------")
 
 def createtest_page(request):
-    content = {}
-    
+    if request.method == 'POST' and 'submitBtn' in request.POST:
+        
+        test = Tests()
+        test.name = request.POST['name']
+        test.subject = request.POST['subject']
+        test.level = request.POST['level']
+        test.link = request.POST['link']
+        test.date_start = request.POST['date_start']
+        test.time_start = request.POST['time_start']
+        test.date_end = request.POST['date_end']
+        test.time_end = request.POST['time_end']
+        test.save()
+        return HttpResponseRedirect('/createtest/')
     return render(request, 'createtest.html')
+
 def index(request):
     return render(request, 'index.html')
 

@@ -22,13 +22,13 @@
                     <label>Название</label>
                     <br>
                     <br>
-                    <input type="text" class="uk-input uk-width-5-6" maxlength="100">
+                    <input type="text" name="name" class="uk-input uk-width-5-6" maxlength="100" required>
                 </div>
                 <div class="uk-width-1-2">
                     <label>Ссылка</label>
                     <br>
                     <br>
-                    <input type="text" class="uk-input uk-width-5-6">
+                    <input type="text" name="link" class="uk-input uk-width-5-6" required>
                 </div>
             </div>
 
@@ -39,10 +39,10 @@
                     <br>
                     <br>
                     <div class="uk-flex uk-flex-middle uk-flex-around">
-                        <label><input class="uk-checkbox" value="Business" type="checkbox"> Business</label>
-                        <label><input class="uk-checkbox" value="Sociology" type="checkbox"> Sociology</label>
-                        <label><input class="uk-checkbox" value="Economics" type="checkbox"> Economics</label>
-                        <label><input class="uk-checkbox" value="Math" type="checkbox"> Math</label>
+                        <label><input class="uk-radio" name="subject" value="Business" type="radio">Business</label>
+                        <label><input class="uk-radio" name="subject" value="Sociology" type="radio">Sociology</label>
+                        <label><input class="uk-radio" name="subject" value="Economics" type="radio">Economics</label>
+                        <label><input class="uk-radio" name="subject" value="Math" type="radio">Math</label>
                     </div>
                 </div>
 
@@ -51,10 +51,10 @@
                     <br>
                     <br>
                     <div class="uk-flex uk-flex-middle uk-flex-around">
-                        <label><input class="uk-checkbox" value="Pro" type="checkbox"> Pro</label>
-                        <label><input class="uk-checkbox" value="Amateur" type="checkbox"> Amateur</label>
-                        <label><input class="uk-checkbox" value="Normal" type="checkbox"> Normal</label>
-                        <label><input class="uk-checkbox" value="Beginner" type="checkbox"> Beginner</label>
+                        <label><input class="uk-radio" name="level" value="Pro" type="radio">Pro</label>
+                        <label><input class="uk-radio" name="level" value="Amateur" type="radio">Amateur</label>
+                        <label><input class="uk-radio" name="level" value="Normal" type="radio">Normal</label>
+                        <label><input class="uk-radio" name="level" value="Beginner" type="radio">Beginner</label>
                     </div>
                 </div>
             </div>
@@ -62,17 +62,21 @@
             <div class="uk-flex uk-flex-bottom uk-flex-between uk-text-center uk-margin-medium-bottom">
                 <div class="uk-width-1-2">
                     <label>Дата и время начала соревнования</label>
-                    <input type="date" class="uk-input uk-margin uk-width-5-6">
-                    <input type="time" class="uk-input uk-width-5-6">
+                    <input type="date" name="date_start" class="uk-input uk-margin uk-width-5-6" required>
+                    <input type="time" name="time_start" class="uk-input uk-width-5-6" required>
                 </div>
 
                 <div class="uk-width-1-2">
                     <label>Дата и время конца соревнования</label>
-                    <input type="date" class="uk-input uk-margin uk-width-5-6">
-                    <input type="time" class="uk-input uk-width-5-6">
+                    <input type="date" name="date_end" class="uk-input uk-margin uk-width-5-6" required>
+                    <input type="time" name="time_end" class="uk-input uk-width-5-6" required>
                 </div>
             </div>
         </fieldset>
+        {% csrf_token %}
+        <div class="uk-text-right">
+            <button class="uk-button uk-button-primary uk-border-rounded" name="submitBtn" type="submit">Сохранить</button>
+        </div>
     </form>
 
 </body>
