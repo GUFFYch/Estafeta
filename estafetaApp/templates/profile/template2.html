@@ -1,3 +1,83 @@
-<div style="background-color: rgb(83, 52, 12); width: 500px; height: 500px;">
+<div style="width: 80vw; height: 80vh;">
+    <br>
+    <br>
+    <br>
+
+    <div style="display: flex;">
+
+
+    <div class="" uk-grid style="width: 40%;">
+
+        <h1 style="width: auto;">Your team</h1>
+    
+        <div>
+            <div class="uk-light uk-background-secondary uk-padding" style="width: 40vw;">
+                <h3>Your team name</h3>
+                <p>Team info</p>
+                <button class="uk-button uk-button-default">Leave</button>
+            </div>
+        </div>
+    </div>
+
+    <p uk-margin>
+        <a class="uk-button uk-button-default" href="#modal-sections" uk-toggle>Create team</a>
+
+        <div id="modal-sections" uk-modal>
+            <div class="uk-modal-dialog">
+                <form class="uk-form-horizontal uk-margin-large">
+
+                <button class="uk-modal-close-default" type="button" uk-close></button>
+                <div class="uk-modal-header">
+                    <h2 class="uk-modal-title">Create team</h2>
+                </div>
+                <div class="uk-modal-body">
+
+
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-horizontal-text">Team name</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" id="form-horizontal-text" type="text" placeholder="Your name...">
+                            </div>
+                        </div>
+                    
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-horizontal-select">Team language</label>
+                            <div class="uk-form-controls">
+                                <select class="uk-select" id="form-horizontal-select">
+                                    <option>Russian</option>
+                                    <option>English</option>
+                                    <option>Portuguese</option>
+                                </select>
+                            </div>
+                        </div>
+                    
+
+                </div>
+                <div class="uk-modal-footer uk-text-right">
+                    <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                    <button class="uk-button uk-button-primary" type="button">Save</button>
+                </div>
+            </form>
+
+            </div>
+        </div>
+    </p>
+            
+
+    </div>
+    
+
+    <br>
+    <br>
+
+
+    <div class="uk-navbar-item">
+        <h1>Search team</h1>
+        <br>
+        <form class="uk-search uk-search-navbar" style="background-color: rgba(204, 204, 204, 0.205);">
+            <span uk-search-icon></span>
+            <input class="uk-search-input" type="search" placeholder="Search">
+        </form>
+    </div>
 
 </div>
