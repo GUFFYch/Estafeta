@@ -12,3 +12,8 @@ class Tests(models.Model):
     link = models.CharField(max_length=500) # ссылка на контест
     date_stat = models.DateField(max_length=50) # дата начала теста
     date_end = models.DateField(max_length=50) # дата конца теста
+
+class Team(models.Model):
+    name = models.CharField(max_length=100)  # название
+    language = models.CharField(max_length=50) # страна
+    password = models.CharField(max_length=100) # пароль
