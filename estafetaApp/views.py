@@ -27,8 +27,10 @@ def profile_page(request):
         print("PROBLEMS")
         print("---------------")
 
-
-
+def createtest_page(request):
+    content = {}
+    
+    return render(request, 'createtest.html')
 def index(request):
     return render(request, 'index.html')
 
