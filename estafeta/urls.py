@@ -28,5 +28,7 @@ urlpatterns = [
     path('profile/', views.profile_page),
     # path('profile/<id>', views.profile_sertain_page),
     path('createtest/', views.createtest_page),
+    path('profile/<name>/', views.profileTemplate_page),
+
 
 ]

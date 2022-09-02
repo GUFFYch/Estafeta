@@ -10,7 +10,17 @@ from django.contrib.auth import authenticate, login
 from account.models import Account
 
 
+def profileTemplate_page(request ,name):
+    content = {}
 
+    path = f"profile/template{name}.html"
+    if name == '1':
+        pass
+
+    elif name == '2':
+        pass
+
+    return render(request, path, content)
 
 
 
