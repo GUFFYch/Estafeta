@@ -56,6 +56,12 @@ def createtest_page(request):
 def index(request):
     return render(request, 'index.html')
 
+def main_page(request):
+    content = {}
+    tests = Tests.objects.all()
+    content['tests'] = tests
+    return render(request, 'main.html', content)
+
 def logout_view(request):
     return HttpResponseRedirect("/")
 
