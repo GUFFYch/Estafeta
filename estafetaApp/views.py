@@ -10,6 +10,8 @@ from django.http import HttpResponseRedirect, HttpResponse, JsonResponse, Http40
 from .forms import *
 from django.contrib.auth import authenticate, login
 from account.models import Account
+from django.contrib.auth import logout, authenticate, login
+
 
 
 def profileTemplate_page(request ,name):
@@ -58,6 +60,7 @@ def createtest_page(request):
 def index(request):
     content = {}
     user = request.user
+    print(user)
     content['user'] = user
     return render(request, 'index.html', content)
 
@@ -68,6 +71,7 @@ def main_page(request):
     return render(request, 'main.html', content)
 
 def logout_view(request):
+    logout(request)
     return HttpResponseRedirect("/")
 
 def reg_page(request):

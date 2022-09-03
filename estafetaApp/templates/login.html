@@ -1,27 +1,121 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
-    <form method="POST" action="." id="signin-form" class="uk-text-center">
-        {% csrf_token %}
-            <h3 style="text-align: center; margin-top: 5%">Войти</h3>
-            <div style="width: 80%; margin:auto">
-                <div class="uk-flex-column inputs uk-margin-medium-bottom">
-                    <label>Почта</label>
-                    <input type="text" name="email" class="uk-input uk-border uk-border-rounded" placeholder="email@mail.com">
-                </div>
-                <div class="uk-flex-column inputs">
-                    <label>Пароль</label>
-                    <input type="password" name="password" placeholder="Password..." class="uk-input uk-border uk-border-rounded">
-                </div>
-            </div>
-            <br>
-            <button class="uk-button uk-button-secondary uk-width-1-2 uk-margin" type="submit" name="btnform2">Войти</button>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.13.10/dist/css/uikit.min.css" />
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    </form>
+</head>
+
+<style>
+    .container-main {
+        background: #FFFFFF;
+        border: 1px solid #EFF0F7;
+        box-shadow: 0px 5px 16px rgba(8, 15, 52, 0.06);
+        border-radius: 34px;
+        width: 30vw;
+        margin: auto;
+    }
+
+    .larg {
+        font-family: 'DM Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 34px;
+        line-height: 46px;
+        text-align: center;
+        color: #170F49;
+    }
+
+    .small {
+        font-family: 'DM Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 30px;
+        text-align: center;
+        color: #6F6C90;
+    }
+</style>
+
+<body>
+
+    <br>
+    <br>
+    <br>
+
+    <div style="width: 10vw; margin: auto;">
+
+            <header class="uk-comment-header">
+                <div class="uk-grid-medium uk-flex-middle" uk-grid>
+                    <div class="uk-width-auto">
+                        <img class="uk-comment-avatar" src="https://cdn-icons-png.flaticon.com/512/5448/5448104.png" width="80" height="80" alt="">
+                    </div>
+                    <div class="uk-width-expand">
+                        <h1 class="uk-margin-remove">Academy</h4>
+                        
+                    </div>
+                </div>
+            </header>
+
+    </div>
+
+
+    <p class="larg">Sign in to your account</p>
+    <p class="small">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+
+    <br>
+    <br>
+    <br>
+    <div class="container-main">
+        <br>
+        <br>
+            <form method="POST" action="." id="signin-form" class="uk-width-4-5 uk-form-stacked">
+                {% csrf_token %}
+                <div style="width: 80%; margin: auto;">
+                    <!-- <div class="uk-flex-column inputs uk-margin-medium-bottom">
+                        <label>Почта</label>
+                        <input type="text" name="email" class="uk-input uk-border uk-border-rounded"
+                            placeholder="email@mail.com">
+                    </div> -->
+
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-stacked-text">Login</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="form-stacked-text" type="email" placeholder="email@mail.com" name="email">
+                        </div>
+                    </div>
+
+                    <!-- <div class="uk-flex-column inputs">
+                        <label>Пароль</label>
+                        <input type="password" name="password" placeholder="Password..."
+                            class="uk-input uk-border uk-border-rounded">
+                    </div> -->
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-stacked-text">Password</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="form-stacked-text" type="password" name="password" placeholder="Password...">
+                        </div>
+                    </div>
+                <br>
+                <button class="uk-button uk-button-secondary uk-width-1-2 uk-margin" type="submit"
+                    name="btnform2">Войти</button>
+                </div>
+            </form>
+
+    </div>
+
+
+
 </body>
+
+
 </html>
+
+<!-- UIkit JS -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.15.6/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.15.6/dist/js/uikit-icons.min.js"></script>
