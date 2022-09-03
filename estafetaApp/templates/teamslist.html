@@ -1,7 +1,8 @@
 <!-- <p>{{teams}}</p> -->
 
-{% for team in teams%}
-<div class="uk-card">
-    
+{% for team in teams %}
+<div class="uk-card uk-flex uk-flex-between uk-width-1">
+    <h3>{{team.name}}</h>
+         <button class="uk-button uk-label uk-label-success uk-button-link"> Вступить </button>
 </div>
 {% endfor %}

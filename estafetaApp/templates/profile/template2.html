@@ -1,9 +1,9 @@
 <div style="width: 80vw; height: 80vh; margin-top: 10%">
 
-    <div class="uk-flex uk-flex-between">
+    <div class="uk-flex uk-flex-top">
 
 
-        <div style="width: 40%;">
+        <div class="uk-width-3-5">
 
             <div class="uk-flex uk-flex-middle uk-flex-between">
                 <h1 style="width: auto;">Your team</h1>
@@ -11,7 +11,7 @@
                 <a class="uk-button uk-button-default" href="#modal-sections" uk-toggle>Create team</a>
             </div>
             <div>
-                <div class="uk-light uk-background-secondary uk-padding" style="width: 40vw;">
+                <div class="uk-light uk-background-secondary uk-padding uk-width-1">
                     <h3>Your team name</h3>
                     <p>Team info</p>
                     <button class="uk-button uk-button-default">Leave</button>
@@ -19,66 +19,14 @@
             </div>
         </div>
 
-        <div uk-margin>
-
-            <div id="modal-sections" uk-modal>
-                <div class="uk-modal-dialog">
-                    <form method="POST" class="uk-form-horizontal uk-margin-large">
-
-                        <button class="uk-modal-close-default" type="button" uk-close></button>
-                        <div class="uk-modal-header">
-                            <h2 class="uk-modal-title">Create team</h2>
-                        </div>
-                        <div class="uk-modal-body">
-
-
-                            <div class="uk-margin">
-                                <label class="uk-form-label" for="form-horizontal-text">Team name</label>
-                                <div class="uk-form-controls">
-                                    <input class="uk-input" name="name" type="text" placeholder="Team name...">
-                                </div>
-                            </div>
-
-                            <div class="uk-margin">
-                                <label class="uk-form-label" for="form-horizontal-select">Team language</label>
-                                <div class="uk-form-controls">
-                                    <select class="uk-select" name="language" id="form-horizontal-select">
-                                        <option>Russian</option>
-                                        <option>English</option>
-                                        <option>Portuguese</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="uk-margin">
-                                <label class="uk-form-label" for="form-horizontal-text">Team password</label>
-                                <div class="uk-form-controls">
-                                    <input class="uk-input" id="form-horizontal-text" name="password" type="password"
-                                        placeholder="****">
-                                </div>
-                            </div>
-
-
-                        </div>
-                        {% csrf_token %}
-                        <div class="uk-modal-footer uk-text-right">
-                            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-                            <button class="uk-button uk-button-primary" name="createTeam" type="submit">Save</button>
-                        </div>
-                    </form>
-
-                </div>
-            </div>
-        </div>
-
-        <div>
+        <div class="uk-width-2-5 uk-text-right">
             <h1>Search team</h1>
             <br>
-            <form class="uk-search uk-search-navbar" style="background-color: rgba(204, 204, 204, 0.205);">
-                <span uk-search-icon></span>
+            <form class="uk-search uk-search-navbar uk-width-4-5" style="margin: 2% auto">
+                <span class="uk-search-icon-flip" uk-search-icon></span>
                 <input class="uk-search-input" id="searchPole" type="search" placeholder="Search">
             </form>
-            <div class="uk-grid" id="teamsList" uk-grid>
+            <div class="uk-grid uk-width-3-5" style="margin: 0 auto" id="teamsList" uk-grid>
 
             </div>
         </div>
@@ -86,11 +34,57 @@
     </div>
 
 
-    <br>
-    <br>
+    <div uk-margin>
+
+        <div id="modal-sections" uk-modal>
+            <div class="uk-modal-dialog">
+                <form method="POST" class="uk-form-horizontal uk-margin-large">
+
+                    <button class="uk-modal-close-default" type="button" uk-close></button>
+                    <div class="uk-modal-header">
+                        <h2 class="uk-modal-title">Create team</h2>
+                    </div>
+                    <div class="uk-modal-body">
 
 
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-horizontal-text">Team name</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" name="name" type="text" placeholder="Team name...">
+                            </div>
+                        </div>
 
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-horizontal-select">Team language</label>
+                            <div class="uk-form-controls">
+                                <select class="uk-select" name="language" id="form-horizontal-select">
+                                    <option>Russian</option>
+                                    <option>English</option>
+                                    <option>Portuguese</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-horizontal-text">Team password</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" id="form-horizontal-text" name="password" type="password"
+                                    placeholder="****">
+                            </div>
+                        </div>
+
+
+                    </div>
+                    {% csrf_token %}
+                    <div class="uk-modal-footer uk-text-right">
+                        <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                        <button class="uk-button uk-button-primary" name="createTeam" type="submit">Save</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>

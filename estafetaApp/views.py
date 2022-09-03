@@ -63,10 +63,9 @@ def profileTemplate_page(request, name):
     return render(request, path, content)
 
 
-def searchTeam_page(request, name='a'):
+def searchTeam_page(request, name):
     content = {}
     content['teams'] = Team.objects.filter(name__icontains=name)
-    print(content['teams'])
     return render(request, 'teamslist.html', content)
 
 def createtest_page(request):
