@@ -11,8 +11,33 @@ from .forms import *
 from django.contrib.auth import authenticate, login
 from account.models import Account
 from django.contrib.auth import logout, authenticate, login
+from django.core.files.storage import FileSystemStorage
+import openpyxl
 
+def table_page(request):
+    content = {}
+    if request.FILES:
+        excel_file = request.FILES["excel_file"]
 
+        wb = openpyxl.load_workbook(excel_file)
+
+        worksheet = wb["Sheet1"]
+        print(worksheet)
+
+        excel_data = list()
+
+        for row in worksheet.iter_rows():
+            row_data = list()
+            for cell in row:
+                row_data.append(str(cell.value))
+            excel_data.append(row_data)
+        print(excel_data[1::])
+
+        content["excel_data_start"] = excel_data[0]
+
+        content["excel_data"] = excel_data[1::]
+
+    return render(request, 'tables.html', content)
 
 def profileTemplate_page(request ,name):
     content = {}
