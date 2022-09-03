@@ -67,7 +67,7 @@ def main_page(request):
 def logout_view(request):
     return HttpResponseRedirect("/")
 
-def login_page(request):
+def reg_page(request):
     form = SignUpForm(request.POST)
     context = {
         'form': form
@@ -104,8 +104,14 @@ def login_page(request):
             user.save()
             return redirect('/login/')
 
-    elif request.method == 'POST' and 'btnform2' in request.POST:
-        print(request.POST)
+  
+
+    return render(request, 'signin.html', context)
+
+def login_page(request):
+    print(request.POST)
+
+    if request.method == 'POST' and 'btnform2' in request.POST:
         email = request.POST.get('email')
         password = request.POST.get('password')
         user = authenticate(request, email=email, password=password)
@@ -115,20 +121,4 @@ def login_page(request):
             return redirect('/')
         else:
             print('Try again! username or password is incorrect')
-    # регистрация
-    elif request.method == 'POST' and 'btnform1' in request.POST:
-        print("------------")
-
-        print(form)
-        print("------------")
-
-        form.save()
-        email = form.cleaned_data.get('email')
-        first_name = form.cleaned_data.get('first_name')
-        password = form.cleaned_data.get('password1')
-        user = authenticate(email=email, password=password, first_name=first_name)
-        # login(request, user)
-        return redirect('/login/')
-
-
-    return render(request, 'signin.html', context)
+    return render(request, 'login.html')
