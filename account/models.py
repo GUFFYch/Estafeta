@@ -41,6 +41,7 @@ class Account(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     subjects = models.TextField(default='-', max_length=255)
     knowledge = models.TextField(max_length=200)
+    google_link = models.TextField(max_length= 250)
     
 
     USERNAME_FIELD = 'email'

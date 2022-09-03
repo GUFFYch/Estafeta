@@ -25,6 +25,17 @@
                     <button class="uk-button uk-button-text"
                         style="margin: 0 auto; font-size: 20px;">Team</button>
                 </li>
+
+               
+                {% if user.is_admin %}
+
+                <li class="Btn">
+                    <button class="uk-button uk-button-text"
+                        style="margin: 0 auto; font-size: 20px;">Admin</button>
+                </li>
+
+                {% endif %}
+
             </ul>
         </div>
 
