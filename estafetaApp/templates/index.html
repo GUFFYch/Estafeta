@@ -37,7 +37,15 @@
                         <option>Option 02</option>
                     </select>
                 </li>
+                {% if user.is_authenticated %}
+
+                <li class="uk-active"><a href="/profile/" uk-icon="user"></a></li>
+                
+                {% else %}
+
                 <li class="uk-active"><a href="">Get started</a></li>
+
+                {% endif %}
             </ul>
         </div>
     </nav>

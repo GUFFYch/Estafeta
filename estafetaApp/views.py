@@ -56,7 +56,10 @@ def createtest_page(request):
     return render(request, 'createtest.html')
 
 def index(request):
-    return render(request, 'index.html')
+    content = {}
+    user = request.user
+    content['user'] = user
+    return render(request, 'index.html', content)
 
 def main_page(request):
     content = {}
@@ -109,6 +112,7 @@ def reg_page(request):
     return render(request, 'signin.html', context)
 
 def login_page(request):
+    content = {}
     print(request.POST)
 
     if request.method == 'POST' and 'btnform2' in request.POST:
