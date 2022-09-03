@@ -1,90 +1,126 @@
-<div style="width: 80vw; height: 80vh;">
-    <br>
-    <br>
-    <br>
+<div style="width: 80vw; height: 80vh; margin-top: 10%">
 
-    <div style="display: flex;">
+    <div class="uk-flex uk-flex-between">
 
 
-    <div class="" uk-grid style="width: 40%;">
+        <div style="width: 40%;">
 
-        <h1 style="width: auto;">Your team</h1>
-    
+            <div class="uk-flex uk-flex-middle uk-flex-between">
+                <h1 style="width: auto;">Your team</h1>
+
+                <a class="uk-button uk-button-default" href="#modal-sections" uk-toggle>Create team</a>
+            </div>
+            <div>
+                <div class="uk-light uk-background-secondary uk-padding" style="width: 40vw;">
+                    <h3>Your team name</h3>
+                    <p>Team info</p>
+                    <button class="uk-button uk-button-default">Leave</button>
+                </div>
+            </div>
+        </div>
+
+        <div uk-margin>
+
+            <div id="modal-sections" uk-modal>
+                <div class="uk-modal-dialog">
+                    <form method="POST" class="uk-form-horizontal uk-margin-large">
+
+                        <button class="uk-modal-close-default" type="button" uk-close></button>
+                        <div class="uk-modal-header">
+                            <h2 class="uk-modal-title">Create team</h2>
+                        </div>
+                        <div class="uk-modal-body">
+
+
+                            <div class="uk-margin">
+                                <label class="uk-form-label" for="form-horizontal-text">Team name</label>
+                                <div class="uk-form-controls">
+                                    <input class="uk-input" name="name" type="text" placeholder="Team name...">
+                                </div>
+                            </div>
+
+                            <div class="uk-margin">
+                                <label class="uk-form-label" for="form-horizontal-select">Team language</label>
+                                <div class="uk-form-controls">
+                                    <select class="uk-select" name="language" id="form-horizontal-select">
+                                        <option>Russian</option>
+                                        <option>English</option>
+                                        <option>Portuguese</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="uk-margin">
+                                <label class="uk-form-label" for="form-horizontal-text">Team password</label>
+                                <div class="uk-form-controls">
+                                    <input class="uk-input" id="form-horizontal-text" name="password" type="password"
+                                        placeholder="****">
+                                </div>
+                            </div>
+
+
+                        </div>
+                        {% csrf_token %}
+                        <div class="uk-modal-footer uk-text-right">
+                            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                            <button class="uk-button uk-button-primary" name="createTeam" type="submit">Save</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
         <div>
-            <div class="uk-light uk-background-secondary uk-padding" style="width: 40vw;">
-                <h3>Your team name</h3>
-                <p>Team info</p>
-                <button class="uk-button uk-button-default">Leave</button>
-            </div>
-        </div>
-    </div>
-
-    <div uk-margin>
-        <a class="uk-button uk-button-default" href="#modal-sections" uk-toggle>Create team</a>
-
-        <div id="modal-sections" uk-modal>
-            <div class="uk-modal-dialog">
-                <form class="uk-form-horizontal uk-margin-large">
-
-                <button class="uk-modal-close-default" type="button" uk-close></button>
-                <div class="uk-modal-header">
-                    <h2 class="uk-modal-title">Create team</h2>
-                </div>
-                <div class="uk-modal-body">
-
-
-                        <div class="uk-margin">
-                            <label class="uk-form-label" for="form-horizontal-text">Team name</label>
-                            <div class="uk-form-controls">
-                                <input class="uk-input" id="form-horizontal-text" type="text" placeholder="Your name...">
-                            </div>
-                        </div>
-                    
-                        <div class="uk-margin">
-                            <label class="uk-form-label" for="form-horizontal-select">Team language</label>
-                            <div class="uk-form-controls">
-                                <select class="uk-select" id="form-horizontal-select">
-                                    <option>Russian</option>
-                                    <option>English</option>
-                                    <option>Portuguese</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="uk-margin">
-                            <label class="uk-form-label" for="form-horizontal-text">Team password</label>
-                            <div class="uk-form-controls">
-                                <input class="uk-input" id="form-horizontal-text" type="text" placeholder="****">
-                            </div>
-                        </div>
-                    
-
-                </div>
-                <div class="uk-modal-footer uk-text-right">
-                    <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-                    <button class="uk-button uk-button-primary" type="button">Save</button>
-                </div>
+            <h1>Search team</h1>
+            <br>
+            <form class="uk-search uk-search-navbar" style="background-color: rgba(204, 204, 204, 0.205);">
+                <span uk-search-icon></span>
+                <input class="uk-search-input" id="searchPole" type="search" placeholder="Search">
             </form>
+            <div class="uk-grid" id="teamsList" uk-grid>
 
             </div>
         </div>
-    </div>
-            
 
     </div>
-    
+
 
     <br>
     <br>
 
 
-    <div class="uk-navbar-item">
-        <h1>Search team</h1>
-        <br>
-        <form class="uk-search uk-search-navbar" style="background-color: rgba(204, 204, 204, 0.205);">
-            <span uk-search-icon></span>
-            <input class="uk-search-input" type="search" placeholder="Search">
-        </form>
-    </div>
 
 </div>
+
+<script>
+    // $('#searchPole').on('', '#post-form', function (e) {
+    //     e.preventDefault();
+    //     if ($('#message').val().trim()) {
+    //         $.ajax({
+    //             type: 'POST',
+    //             url: '/send',
+    //             data: {
+    //                 username: $('#username').val(),
+    //                 room_id: localStorage.activeChat,
+    //                 message: $('#message').val(),
+    //                 csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+    //             },
+    //             success: function (data) {
+    //                 // alert(data)
+    //             }
+    //         });
+    //     }
+    //     document.getElementById('message').value = ''
+    // });
+    $("#searchPole").on('input', function () {
+        var xhr = new XMLHttpRequest()
+        if(this.value) {
+            xhr.open('GET', `/searchteam/${this.value}/`)
+            xhr.onload = function () {
+                $('#teamsList').html(xhr.response)
+            }
+            xhr.send()
+        }
+    });
+</script>

@@ -51,21 +51,15 @@
 </style>
 
 <script>
-    // $(function () {
-    //     var num = window.location.search[1];
-    //     if ( localStorage.page != null ){
-    //         num = localStorage.page
-    //     } else {
-    //         num = 1;
-    //     }
-    //     var xhr = new XMLHttpRequest()
-    //     xhr.open('GET', `profile/${num}/`)
-    //     xhr.onload = function () {
-    //         $('#MainWindowContainer').html(xhr.response)
-    //     }
-    //     xhr.send()
+    $(function () {
+        var xhr = new XMLHttpRequest()
+        xhr.open('GET', `/profile/2/`)
+        xhr.onload = function () {
+            $('#MainWindowContainer').html(xhr.response)
+        }
+        xhr.send()
 
-    // });
+    });
 
     $('.Btn').on('click', {}, function (inBody) {
         var xhr = new XMLHttpRequest()

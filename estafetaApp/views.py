@@ -1,18 +1,15 @@
 from cmath import phase
 from itertools import count
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect
 from .forms import *
 from django.shortcuts import render, redirect
-
-from .forms import *
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse, Http404, HttpResponseNotFound
-from .forms import *
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from account.models import Account
-from django.contrib.auth import logout, authenticate, login
 from django.core.files.storage import FileSystemStorage
 import openpyxl
+from .models import Tests, Team
+from django.db.models import Q
 
 def table_page(request):
     content = {}
@@ -39,32 +36,38 @@ def table_page(request):
 
     return render(request, 'tables.html', content)
 
-def profileTemplate_page(request ,name):
-    content = {}
-
-    path = f"profile/template{name}.html"
-    if name == '1':
-        pass
-
-    elif name == '2':
-        pass
-
-    return render(request, path, content)
-
-
-
 def profile_page(request):
     content = {}
     try:
         email = request.user
         person = Account.objects.get(email=email)
         content['user'] = person
+        if request.method == 'POST' and 'createTeam' in request.POST:
+            team = Team()
+            team.name = request.POST['name']
+            team.language = request.POST['language']
+            team.password = request.POST['password']
+            team.save()
+            return HttpResponseRedirect('/profile/')
+
         return render(request, 'profile.html', content)
 
     except Account.DoesNotExist:
         print("---------------")
         print("PROBLEMS")
         print("---------------")
+
+def profileTemplate_page(request, name):
+    content = {}
+    path = f"profile/template{name}.html"
+    return render(request, path, content)
+
+
+def searchTeam_page(request, name='a'):
+    content = {}
+    content['teams'] = Team.objects.filter(name__icontains=name)
+    print(content['teams'])
+    return render(request, 'teamslist.html', content)
 
 def createtest_page(request):
     if request.method == 'POST' and 'submitBtn' in request.POST:
