@@ -1,3 +1,5 @@
+from cmath import phase
+from itertools import count
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from .forms import *
@@ -73,15 +75,33 @@ def login_page(request):
     # вход
 
     if request.method == 'POST' and 'profile_saver3' in request.POST:
-        print(form.errors)
-        print(request.POST)
+        # print(form.errors)
+        # print(form.is_valid())
+        list = request.POST.getlist('sports')
+
+        print(list)
+
 
         if form.is_valid():
             form.save()
             email = form.cleaned_data.get('email')
-            first_name = request.POST.get('name')
+            first_name = form.cleaned_data.get('first_name')
             password = form.cleaned_data.get('password1')
-            user = authenticate(email=email, password=password, first_name=first_name)
+
+            phone = request.POST.get('phone')
+            country = request.POST.get('country')
+            subjects = request.POST.getlist('sports')
+            knowledge = request.POST.get('knowledge')
+
+            user = authenticate(email=email, password=password,
+             first_name=first_name)
+
+            user.phone = phone
+            user.country = country
+            user.knowledge = knowledge
+            user.subjects = subjects
+            print(request.POST)
+            user.save()
             return redirect('/login/')
 
     elif request.method == 'POST' and 'btnform2' in request.POST:
