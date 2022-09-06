@@ -12,7 +12,11 @@
 
 <body>
 
-    {% include 'menu.html' %}
+    {% if user.is_authenticated %}
+        {% include 'menu_login.html' %}
+    {% else %}
+        {% include 'menu.html' %}
+    {% endif %}
 
     <!-- section start -->
     <div class="uk-section uk-text-center uk-margin">
