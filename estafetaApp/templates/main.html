@@ -12,8 +12,11 @@
 </head>
 
 <body>
-    {% include 'menu.html' %}
-
+    {% if user.is_authenticated %}
+        {% include 'menu_login.html' %}
+    {% else %}
+        {% include 'menu.html' %}
+    {% endif %}
     <div class="uk-width-3-5 uk-margin-medium-top" style="margin: 0 auto" uk-filter="target: .js-filter">
 
         <div class="uk-grid-small uk-grid-divider uk-child-width-auto" uk-grid>

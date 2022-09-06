@@ -170,7 +170,7 @@ def login_page(request):
 
         if user is not None:
             login(request, user)
-            return redirect('/')
+            return redirect('/main/')
         else:
             print('Try again! username or password is incorrect')
     return render(request, 'login.html')
