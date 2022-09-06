@@ -31,17 +31,18 @@ class MyAccountManager(BaseUserManager):
 
 
 class Account(AbstractBaseUser):
-    email = models.EmailField(default='', unique=True)
-    first_name = models.CharField(max_length=20, default='-')
-    phone = models.IntegerField(default='1')
-    country = models.CharField(max_length=50, default='')
-    is_admin = models.BooleanField(default=False)
-    is_superuser = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
-    subjects = models.TextField(default='-', max_length=255)
-    knowledge = models.TextField(max_length=200)
-    google_link = models.TextField(max_length= 250)
+    email = models.EmailField(unique = True)
+    first_name = models.CharField(max_length = 20, default = '')
+    phone = models.IntegerField(default = '1')
+    country = models.CharField(max_length = 50, default = '')
+    is_admin = models.BooleanField(default = False)
+    is_superuser = models.BooleanField(default = False)
+    is_staff = models.BooleanField(default = False)
+    is_active = models.BooleanField(default = True)
+    subjects = models.TextField(default = '', max_length = 255)
+    knowledge = models.TextField(max_length = 200)
+    google_link = models.TextField(max_length = 250)
+    team = models.TextField(max_length = 250)
     
 
     USERNAME_FIELD = 'email'

@@ -38,34 +38,51 @@ def table_page(request):
 
 def profile_page(request):
     content = {}
-    try:
-        email = request.user
-        person = Account.objects.get(email=email)
-        content['user'] = person
-        if request.method == 'POST' and 'createTeam' in request.POST:
+    email = request.user
+    person = Account.objects.get(email=email)
+    content['user'] = person
+    if request.method == 'POST' and 'createTeam' in request.POST:
+        try:
             team = Team()
             team.name = request.POST['name']
             team.language = request.POST['language']
             team.password = request.POST['password']
             team.save()
+            person.team = request.POST['name']
+            person.save()
             return HttpResponseRedirect('/profile/')
-
-        return render(request, 'profile.html', content)
-
-    except Account.DoesNotExist:
-        print("---------------")
-        print("PROBLEMS")
-        print("---------------")
+        except:
+            print("error")
+    if request.method == 'POST' and 'leaveTeam' in request.POST:
+        person.team = ""
+        person.save()
+        return HttpResponseRedirect('/profile/')
+    if request.method == 'POST' and 'joinTeam' in request.POST:
+        team = Team.objects.get(name=request.POST['joinTeam'])
+        if team.password == request.POST['password']:
+            person.team = request.POST['joinTeam']
+            person.save()
+        else:
+            print("error")
+        return HttpResponseRedirect('/profile/')
+        
+    return render(request, 'profile.html', content)
 
 def profileTemplate_page(request, name):
     content = {}
     path = f"profile/template{name}.html"
+    user = Account.objects.get(email=request.user)
+    if user.team:
+        team = Team.objects.get(name=user.team)
+        content['team'] = team
+    else:
+        content['team'] = ""
     return render(request, path, content)
 
 
 def searchTeam_page(request, name):
     content = {}
-    content['teams'] = Team.objects.filter(name__icontains=name)
+    content['teams'] =  Team.objects.filter(name__icontains=name)
     return render(request, 'teamslist.html', content)
 
 def createtest_page(request):
