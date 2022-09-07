@@ -32,6 +32,7 @@ urlpatterns = [
     path('createtest/', views.createtest_page),
     path('profile/<name>/', views.profileTemplate_page),
     path('table/', views.table_page),
-
+    path('results/', views.results_page),
+    path('results/info/', views.info_page),
 
 ]

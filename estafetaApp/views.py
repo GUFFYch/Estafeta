@@ -10,6 +10,9 @@ from django.core.files.storage import FileSystemStorage
 import openpyxl
 from .models import Tests, Team
 from django.db.models import Q
+import xlrd 
+import csv
+import pandas as pd
 
 def table_page(request):
     content = {}
@@ -121,6 +124,70 @@ def index_page(request):
         return render(request, 'main.html', content)
     else:
         return render(request, 'index.html', content)
+
+def results_page(request):
+    content = {}
+    tests = Tests.objects.all()
+    content['tests'] = tests
+    return render(request, 'results.html', content)
+
+
+def info_page(request):
+    content = {}
+    
+    try:
+        test = Tests.objects.get()
+        user = Account.objects.get(email=request.user)
+        content['user'] = user
+
+        if request.FILES:
+
+            # SAVE FILE TO CSV
+
+
+            excel_file = request.FILES["excel_file"]
+
+            wb = openpyxl.load_workbook(excel_file)
+
+            worksheet = wb["Sheet1"]
+            # print(worksheet)
+
+            excel_data = list()
+
+            for row in worksheet.iter_rows():
+                row_data = list()
+                for cell in row:
+                    row_data.append(str(cell.value))
+                excel_data.append(row_data)
+
+            url = str(test.id) + '.csv'
+            print(url)
+
+            with open(url, 'w', newline='') as f:
+                writer = csv.writer(f)
+                writer.writerows(excel_data)
+
+            test['results_link'] = url
+
+            print(test.id)
+
+
+            # OPEN CSV FILE 
+
+
+            with open(test['results_link'], newline='') as f:
+                reader = csv.reader(f)
+                data = list(reader)
+            print(data)
+
+
+            content["excel_data_start"] = data[0]
+
+            content["excel_data"] = data[1::]
+
+        return render(request, 'info.html', content)
+    except:
+        return render(request, 'info.html', content)
 
 # def main_page(request):
 #     content = {}
