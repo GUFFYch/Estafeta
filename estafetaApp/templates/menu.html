@@ -1,31 +1,62 @@
-<nav class="uk-navbar-container uk-width-4-5" style="margin: 0 auto; background-color: rgba(255,255,255,0);"
-        uk-navbar>
-        <div class="uk-navbar-left">
-            <ul class="uk-navbar-nav">
-                <li class="uk-active"><a href="">Estafeta</a></li>
-            </ul>
-        </div>
+{% if user.is_authenticated %}
 
-        <div class="uk-navbar-center">
-            <ul class="uk-navbar-nav">
-                <li class="uk-active"><a href="/">Home</a></li>
-                <li class="uk-active"><a href="/main/">Tournaments</a></li>
-                <li class="uk-active"><a href="">About us</a></li>
-                <li class="uk-active"><a href="">Files</a></li>
-            </ul>
-        </div>
+<nav class="uk-navbar-container uk-width-4-5" style="margin: 0 auto; background-color: rgba(255,255,255,0);" uk-navbar>
+    <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav">
+            <li class="uk-active"><a href="">Estafeta</a></li>
+        </ul>
+    </div>
 
-        <div class="uk-navbar-right">
-            <ul class="uk-navbar-nav uk-flex uk-flex-middle">
-                <li class="uk-active">
-                    <select class="uk-select">
-                        <option>Option 01</option>
-                        <option>Option 02</option>
-                    </select>
-                </li>
+    <div class="uk-navbar-center">
+        <ul class="uk-navbar-nav">
+            <li class="uk-active"><a href="/main/">Tournaments</a></li>
+            <li class="uk-active"><a href="">Files</a></li>
+        </ul>
+    </div>
 
-                <li class="uk-active"><a href="/signin/">Get started</a></li>
+    <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav uk-flex uk-flex-middle">
+            <a href="/profile/" class="uk-icon-button uk-button-default" uk-icon="user" style="margin-left: 3%;"></a>
+            <div class="uk-navbar-dropdown">
+                <ul class="uk-nav uk-navbar-dropdown-nav">
+                    <li class="uk-active"><a href="/logout">Logout</a></li>
+                </ul>
+            </div>
+        </ul>
+    </div>
+</nav>
 
-            </ul>
-        </div>
-    </nav>
+{% else %}
+
+<nav class="uk-navbar-container uk-width-4-5" style="margin: 0 auto; background-color: rgba(255,255,255,0);" uk-navbar>
+    <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav">
+            <li class="uk-active"><a href="">Estafeta</a></li>
+        </ul>
+    </div>
+
+    <div class="uk-navbar-center">
+        <ul class="uk-navbar-nav">
+            <li class="uk-active"><a href="/">Home</a></li>
+            <li class="uk-active"><a href="/main/">Tournaments</a></li>
+            <li class="uk-active"><a href="">About us</a></li>
+            <li class="uk-active"><a href="">Files</a></li>
+        </ul>
+    </div>
+
+    <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav uk-flex uk-flex-middle">
+            <li class="uk-active">
+                <select class="uk-select">
+                    <option>Option 01</option>
+                    <option>Option 02</option>
+                </select>
+            </li>
+
+            <li class="uk-active"><a href="/signin/">Get started</a></li>
+
+        </ul>
+    </div>
+</nav>
+
+{% endif %}

@@ -13,8 +13,9 @@ from django.db.models import Q
 
 def table_page(request):
     content = {}
-    if request.FILES:
-        excel_file = request.FILES["excel_file"]
+    if request.user.is_authenticated and request.user.is_admin:
+        if request.FILES:
+            excel_file = request.FILES["excel_file"]
 
         wb = openpyxl.load_workbook(excel_file)
 
@@ -34,50 +35,58 @@ def table_page(request):
 
         content["excel_data"] = excel_data[1::]
 
-    return render(request, 'tables.html', content)
+        return render(request, 'tables.html', content)
+    else:
+        return render(request, 'notadmin.html')
 
 def profile_page(request):
     content = {}
-    email = request.user
-    person = Account.objects.get(email=email)
-    content['user'] = person
-    if request.method == 'POST' and 'createTeam' in request.POST:
-        try:
-            team = Team()
-            team.name = request.POST['name']
-            team.language = request.POST['language']
-            team.password = request.POST['password']
-            team.save()
-            person.team = request.POST['name']
+    if request.user.is_authenticated:
+        email = request.user
+        person = Account.objects.get(email=email)
+        content['user'] = person
+        if request.method == 'POST' and 'createTeam' in request.POST:
+            try:
+                team = Team()
+                team.name = request.POST['name']
+                team.language = request.POST['language']
+                team.password = request.POST['password']
+                team.save()
+                person.team = request.POST['name']
+                person.save()
+                return HttpResponseRedirect('/profile/')
+            except:
+                print("error")
+        if request.method == 'POST' and 'leaveTeam' in request.POST:
+            person.team = ""
             person.save()
             return HttpResponseRedirect('/profile/')
-        except:
-            print("error")
-    if request.method == 'POST' and 'leaveTeam' in request.POST:
-        person.team = ""
-        person.save()
-        return HttpResponseRedirect('/profile/')
-    if request.method == 'POST' and 'joinTeam' in request.POST:
-        team = Team.objects.get(name=request.POST['joinTeam'])
-        if team.password == request.POST['password']:
-            person.team = request.POST['joinTeam']
-            person.save()
-        else:
-            print("error")
-        return HttpResponseRedirect('/profile/')
-        
-    return render(request, 'profile.html', content)
+        if request.method == 'POST' and 'joinTeam' in request.POST:
+            team = Team.objects.get(name=request.POST['joinTeam'])
+            if team.password == request.POST['password']:
+                person.team = request.POST['joinTeam']
+                person.save()
+            else:
+                print("error")
+            return HttpResponseRedirect('/profile/')    
+        return render(request, 'profile.html', content)
+    else:
+        return render(request, 'notadmin.html')
+
 
 def profileTemplate_page(request, name):
     content = {}
-    path = f"profile/template{name}.html"
-    user = Account.objects.get(email=request.user)
-    if user.team:
-        team = Team.objects.get(name=user.team)
-        content['team'] = team
+    if request.user.is_authenticated:
+        path = f"profile/template{name}.html"
+        user = Account.objects.get(email=request.user)
+        if user.team:
+            team = Team.objects.get(name=user.team)
+            content['team'] = team
+        else:
+            content['team'] = ""
+        return render(request, path, content)
     else:
-        content['team'] = ""
-    return render(request, path, content)
+        return HttpResponseRedirect('/singin')    
 
 
 def searchTeam_page(request, name):
@@ -86,33 +95,37 @@ def searchTeam_page(request, name):
     return render(request, 'teamslist.html', content)
 
 def createtest_page(request):
-    if request.method == 'POST' and 'submitBtn' in request.POST:
-        
-        test = Tests()
-        test.name = request.POST['name']
-        test.subject = request.POST['subject']
-        test.level = request.POST['level']
-        test.link = request.POST['link']
-        test.date_start = request.POST['date_start']
-        test.time_start = request.POST['time_start']
-        test.date_end = request.POST['date_end']
-        test.time_end = request.POST['time_end']
-        test.save()
-        return HttpResponseRedirect('/createtest/')
-    return render(request, 'createtest.html')
+    if request.user.is_authenticated and request.user.is_admin:
+        if request.method == 'POST' and 'submitBtn' in request.POST:
 
-def index(request):
-    content = {}
-    user = request.user
-    print(user)
-    content['user'] = user
-    return render(request, 'index.html', content)
+            test = Tests()
+            test.name = request.POST['name']
+            test.subject = request.POST['subject']
+            test.level = request.POST['level']
+            test.link = request.POST['link']
+            test.date_start = request.POST['date_start']
+            test.time_start = request.POST['time_start']
+            test.date_end = request.POST['date_end']
+            test.time_end = request.POST['time_end']
+            test.save()
+            return HttpResponseRedirect('/createtest/')
+        return render(request, 'createtest.html')
+    return HttpResponseRedirect('/profile/')    
 
-def main_page(request):
+def index_page(request):
     content = {}
-    tests = Tests.objects.all()
-    content['tests'] = tests
-    return render(request, 'main.html', content)
+    if request.user.is_authenticated:
+        tests = Tests.objects.all()
+        content['tests'] = tests
+        return render(request, 'main.html', content)
+    else:
+        return render(request, 'index.html', content)
+
+# def main_page(request):
+#     content = {}
+#     tests = Tests.objects.all()
+#     content['tests'] = tests
+#     return render(request, 'main.html', content)
 
 def logout_view(request):
     logout(request)
@@ -160,8 +173,6 @@ def reg_page(request):
     return render(request, 'signin.html', context)
 
 def login_page(request):
-    content = {}
-    print(request.POST)
 
     if request.method == 'POST' and 'btnform2' in request.POST:
         email = request.POST.get('email')

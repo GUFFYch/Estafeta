@@ -21,14 +21,13 @@ from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
+    path('', views.index_page),
     path('accounts/', include('django.contrib.auth.urls')),
     path('logout/', views.logout_view),
     path('login/', views.login_page),
     path('signin/', views.reg_page, name='signup'),
     path('profile/', views.profile_page),
     path('searchteam/<name>/', views.searchTeam_page),
-    path('main/', views.main_page),
     # path('profile/<id>', views.profile_sertain_page),
     path('createtest/', views.createtest_page),
     path('profile/<name>/', views.profileTemplate_page),
