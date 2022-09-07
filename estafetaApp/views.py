@@ -110,7 +110,8 @@ def createtest_page(request):
             test.save()
             return HttpResponseRedirect('/createtest/')
         return render(request, 'createtest.html')
-    return HttpResponseRedirect('/profile/')    
+    return render(request, 'notadmin.html')
+    
 
 def index_page(request):
     content = {}
@@ -181,7 +182,7 @@ def login_page(request):
 
         if user is not None:
             login(request, user)
-            return redirect('/main/')
+            return redirect('/')
         else:
             print('Try again! username or password is incorrect')
     return render(request, 'login.html')
