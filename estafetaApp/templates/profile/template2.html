@@ -1,92 +1,85 @@
-<div style="width: 80vw; height: 80vh; margin-top: 10%">
+<div style="margin-top: 5%">
 
 
 
-        {% if team != ""%}
+    {% if team != ""%}
 
-        <div class="uk-section uk-preserve-color uk-section-muted">
+    <div class="uk-section uk-preserve-color uk-section-muted">
+        <div class="uk-container">
+
+            <div class="uk-panel uk-margin-medium">
+                <h3>Information</h3>
+            </div>
+
+            <div class="uk-grid-match uk-child-width-expand@m" uk-grid>
+                <div>
+                    <header class="uk-comment-header">
+                        <div class="uk-grid-medium uk-flex-middle" uk-grid>
+                            <div class="uk-width-auto">
+                                <img class="uk-comment-avatar"
+                                    src="https://cdn-icons-png.flaticon.com/512/1786/1786608.png" width="200"
+                                    height="200" alt="">
+                            </div>
+                            <div class="uk-width-expand">
+                                <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">All
+                                        done!</a></h4>
+                                <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+                                    <li><a href="#">You have a team</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </header>
+                </div>
+                <div></div>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+                        <h3 class="uk-card-title">{{team.name}}</h3>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <button class="uk-button uk-button-danger" type="submit" name="leaveTeam">leave</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    {% else %}
+
+
+    <div class="uk-flex uk-flex-top">
+
+        <div class="uk-section uk-preserve-color uk-section-muted uk-width-3-5">
             <div class="uk-container">
-        
+
                 <div class="uk-panel uk-margin-medium">
                     <h3>Information</h3>
                 </div>
-        
+
                 <div class="uk-grid-match uk-child-width-expand@m" uk-grid>
                     <div>
-                        <header class="uk-comment-header">
                             <div class="uk-grid-medium uk-flex-middle" uk-grid>
                                 <div class="uk-width-auto">
-                                    <img class="uk-comment-avatar" src="https://cdn-icons-png.flaticon.com/512/1786/1786608.png" width="200" height="200" alt="">
+                                    <img class="uk-comment-avatar"
+                                        src="https://cdn-icons-png.flaticon.com/512/2353/2353678.png" width="200"
+                                        height="200" alt="">
                                 </div>
                                 <div class="uk-width-expand">
-                                    <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">All done!</a></h4>
-                                    <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
-                                        <li><a href="#">You have a team</a></li>
-                                    </ul>
+                                    <h4 style="margin: 0" class="uk-comment-title uk-text-break">Youhave limitations!</h4>
+                                    <p style="margin: 0" calss="uk-text-break">You must find or create team</p>
+                                        <a class="uk-button uk-button uk-button-default" href="#modal-sections"
+                                                uk-toggle style="border-color: brown;">Create team</a>
                                 </div>
                             </div>
-                        </header>
                     </div>
-                    <div></div>
-                    <div>
-                        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-                            <h3 class="uk-card-title">{{team.name}}</h3>
-                            <form method="POST">
-                                {% csrf_token %}
-                                <button class="uk-button uk-button-danger" type="submit" name="leaveTeam">leave</button>
-                            </form>
-                        </div>
-                    </div>
+
                 </div>
-        
+
             </div>
         </div>
-
-     
-        {% else %}
-
-
-        <div class="uk-flex uk-flex-top">
-
-            <div class="uk-section uk-preserve-color uk-section-muted">
-                <div class="uk-container">
-            
-                    <div class="uk-panel uk-margin-medium">
-                        <h3>Information</h3>
-                    </div>
-            
-                    <div class="uk-grid-match uk-child-width-expand@m" uk-grid>
-                        <div>
-                            <header class="uk-comment-header">
-                                <div class="uk-grid-medium uk-flex-middle" uk-grid>
-                                    <div class="uk-width-auto">
-                                        <img class="uk-comment-avatar" src="https://cdn-icons-png.flaticon.com/512/2353/2353678.png" width="200" height="200" alt="">
-                                    </div>
-                                    <div class="uk-width-expand">
-                                        <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">You have limitations!</a></h4>
-                                        <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
-                                            <li><a href="#">You must find or create team</a></li>
-                                            <li><a class="uk-button uk-button uk-button-default" href="#modal-sections" uk-toggle style="border-color: brown;">Create team</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </header>
-                        </div>
-
-                    </div>
-            
-                </div>
-            </div>
-
-        <!-- <div class="uk-card uk-card-primary uk-width-2-5">
-            <div class="uk-card-header">
-                <h3>You do not have a team yet</h3>
-            </div>
-            <div>
-                <a class="uk-button uk-button-default" href="#modal-sections" uk-toggle>Create team</a>
-            </div>
-        </div> -->
-        <div class="uk-width-3-5 uk-text-center">
+        <div class="uk-width-2-5 uk-text-center">
             <h1>Search team</h1>
             <br>
             <form class="uk-search uk-search-navbar uk-width-4-5" style="margin: 2% auto">
@@ -99,7 +92,7 @@
         </div>
     </div>
 
-        {% endif %}
+    {% endif %}
 
 
 
@@ -119,7 +112,8 @@
                         <div class="uk-margin">
                             <label class="uk-form-label" for="form-horizontal-text">Team name</label>
                             <div class="uk-form-controls">
-                                <input class="uk-input" maxlength="50" name="name" type="text" placeholder="Team name...">
+                                <input class="uk-input" maxlength="50" name="name" type="text"
+                                    placeholder="Team name...">
                             </div>
                         </div>
 

@@ -20,25 +20,25 @@ def table_page(request):
         if request.FILES:
             excel_file = request.FILES["excel_file"]
 
-        wb = openpyxl.load_workbook(excel_file)
+            wb = openpyxl.load_workbook(excel_file)
 
-        worksheet = wb["Sheet1"]
-        print(worksheet)
+            worksheet = wb["Sheet1"]
+            print(worksheet)
 
-        excel_data = list()
+            excel_data = list()
 
-        for row in worksheet.iter_rows():
-            row_data = list()
-            for cell in row:
-                row_data.append(str(cell.value))
-            excel_data.append(row_data)
-        print(excel_data[1::])
+            for row in worksheet.iter_rows():
+                row_data = list()
+                for cell in row:
+                    row_data.append(str(cell.value))
+                excel_data.append(row_data)
+            print(excel_data[1::])
 
-        content["excel_data_start"] = excel_data[0]
+            content["excel_data_start"] = excel_data[0]
 
-        content["excel_data"] = excel_data[1::]
+            content["excel_data"] = excel_data[1::]
 
-        return render(request, 'tables.html', content)
+            return render(request, 'tables.html', content)
     else:
         return render(request, 'notadmin.html')
 
@@ -95,7 +95,13 @@ def profileTemplate_page(request, name):
 def searchTeam_page(request, name):
     content = {}
     content['teams'] =  Team.objects.filter(name__icontains=name)
-    return render(request, 'teamslist.html', content)
+    return render(request, 'outpLists/teamslist.html', content)
+
+def searchTest_page(request, name):
+    content = {}
+    content['tests'] =  Tests.objects.filter(name__icontains=name)
+    print(content['tests'])
+    return render(request, 'outpLists/testslist.html', content)
 
 def createtest_page(request):
     if request.user.is_authenticated and request.user.is_admin:
@@ -114,7 +120,24 @@ def createtest_page(request):
             return HttpResponseRedirect('/createtest/')
         return render(request, 'createtest.html')
     return render(request, 'notadmin.html')
-    
+
+def finishtest_page(request):
+    if request.user.is_authenticated and request.user.is_admin:
+        if request.method == 'POST' and 'submitBtn' in request.POST:
+
+            # test = Tests()
+            # test.name = request.POST['name']
+            # test.subject = request.POST['subject']
+            # test.level = request.POST['level']
+            # test.link = request.POST['link']
+            # test.date_start = request.POST['date_start']
+            # test.time_start = request.POST['time_start']
+            # test.date_end = request.POST['date_end']
+            # test.time_end = request.POST['time_end']
+            # test.save()
+            return HttpResponseRedirect('/finishtest/')
+        return render(request, 'finishtest.html')
+    return render(request, 'notadmin.html')
 
 def index_page(request):
     content = {}

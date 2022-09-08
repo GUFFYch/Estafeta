@@ -12,27 +12,24 @@
 </head>
 
 <body>
-        {% include 'menu.html' %}
+    {% include 'menu.html' %}
     <div style="width: 80%; margin: 0 auto">
 
 
         <div class="uk-margin-medium-top ">
-            <ul class="uk-flex-center components uk-margin-left" uk-tab>
+            <ul class="uk-flex-center" uk-tab>
                 <li class="uk-active Btn">
-                    <button class="uk-button uk-button-text"
-                        style="margin: 0 auto; font-size: 20px;">Profile</button>
+                    <button class="uk-button uk-button-text" style="margin: 0 auto; font-size: 20px;">Profile</button>
                 </li>
                 <li class="Btn">
-                    <button class="uk-button uk-button-text"
-                        style="margin: 0 auto; font-size: 20px;">Team</button>
+                    <button class="uk-button uk-button-text" style="margin: 0 auto; font-size: 20px;">Team</button>
                 </li>
 
-               
+
                 {% if user.is_admin %}
 
                 <li class="Btn">
-                    <button class="uk-button uk-button-text"
-                        style="margin: 0 auto; font-size: 20px;">Admin</button>
+                    <button class="uk-button uk-button-text" style="margin: 0 auto; font-size: 20px;">Admin</button>
                 </li>
 
                 {% endif %}
@@ -40,9 +37,7 @@
             </ul>
         </div>
 
-        <div id="content">
-            <div id="MainWindowContainer" class="container rounded bg-white" w3-inslude-html="template.html">
-            </div>
+        <div id="MainWindowContainer">
         </div>
 
     </div>
@@ -55,27 +50,34 @@
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.6/dist/js/uikit.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.6/dist/js/uikit-icons.min.js"></script>
 <style>
-    #content {
-        width: 80vw;
-        min-height: 80vh;
-        transition: all 0.3s;
+    * {
+        transition: 0.3s;
     }
 </style>
 
 <script>
     $(function () {
         var xhr = new XMLHttpRequest()
-        xhr.open('GET', `/profile/2/`)
-        xhr.onload = function () {
-            $('#MainWindowContainer').html(xhr.response)
+        try {
+            xhr.open('GET', `/profile/${localStorage.profile}/`)
+            xhr.onload = function () {
+                $('#MainWindowContainer').html(xhr.response)
+            }
+            xhr.send()
+        } catch {
+            xhr.open('GET', `/profile/2/`)
+            xhr.onload = function () {
+                $('#MainWindowContainer').html(xhr.response)
+            }
+            xhr.send()
         }
-        xhr.send()
 
     });
 
     $('.Btn').on('click', {}, function (inBody) {
         var xhr = new XMLHttpRequest()
         var index = $(this).index() + 1
+        localStorage.profile = index
         xhr.open('GET', `/profile/${index}/`)
         xhr.onload = function () {
             $('#MainWindowContainer').html(xhr.response)
