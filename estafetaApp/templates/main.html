@@ -63,18 +63,23 @@
             <li data-level="{{test.level}}" data-subject="{{test.subject}}" data-avalibility="avalible">
 
                 <a href="" class="uk-link-reset">
-                    <div class="uk-card uk-card-default uk-card-hover">
+                    <div class="uk-card uk-card-default uk-card-hover" style="border-radius: 20px;">
                         <div class="uk-card-header" style="border: none">
                             <div class="uk-grid-small uk-flex-middle" uk-grid>
+                                <div class="uk-width-auto">
+                                    <img class="uk-border-circle" width="40" height="40" src="../../images/{{test.subject}}.jpg">
+                                </div>
                                 <div class="uk-width-expand">
-                                    <h3 class="uk-card-title uk-margin-remove-bottom">{{test.name}}</h3>
+                                    <h3 class="uk-card-title uk-margin-remove-bottom">{{test.subject}}</h3>
                                 </div>
                             </div>
                         </div>
                         <div class="uk-card-body">
-                            <h3>{{test.subject}} | {{test.level}}</h3>
+                            <p>{{tests.name}}</p>
+                            <p>{{test.descriptions}}</p>
                         </div>
-                        <div class="uk-card-footer uk-text-left">
+                        <div class="uk-card-footer uk-text-center">
+                            <button class="uk-width-4-5 uk-button uk-button-primary uk-padding-small uk-border-pill" style="margin: 0 auto">Get started</button>
                             <p class="uk-text-meta uk-margin-remove">Start:<time class="uk-margin-small-left"
                                     datetime="2016-04-01T19:00">{{test.date_start}} {{test.time_start}}</time></p>
                             <p class="uk-text-meta uk-margin-remove">End:<time class="uk-margin-small-left"
