@@ -39,8 +39,10 @@ def table_page(request):
             content["excel_data"] = excel_data[1::]
 
             return render(request, 'tables.html', content)
+        else:
+            return render(request, 'tables.html', content)
     else:
-        return render(request, 'notadmin.html')
+        return HttpResponseRedirect('/')
 
 def profile_page(request):
     content = {}
