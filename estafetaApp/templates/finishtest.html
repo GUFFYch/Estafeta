@@ -13,7 +13,7 @@
 
 <body>
     {% include 'menu.html' %}
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         <h1 class="uk-text-center" style="margin: 1% auto">Finish test</h1>
         <div class="uk-width-3-5" style="margin: 2% auto">
             <fieldset class="uk-fieldset">
@@ -34,39 +34,25 @@
         </div>
         <div class="uk-width-3-5" style="margin: 2% auto">
             {% csrf_token %}
-            <div uk-form-custom="target: true" class="uk-wid">
+            <!-- <div uk-form-custom="target: true" class="uk-wid">
                 <input type="file">
                 <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" name="excel_file"
                     required="required">
             </div>
-            <button class="uk-button uk-button-default" name="Upload">Submit</button>
+            <button class="uk-button uk-button-default" name="Upload" type="submit">Submit</button> -->
             <hr>
 
-            <table class="uk-table uk-table-small uk-table-divider">
-                <thead>
-                    <tr>
-                        {% for row in excel_data_start %}
-                        <th class="uk-text-truncate" uk-tooltip="{{ row }}">{{ row }}</th>
-                        {% endfor %}
+            <input type="file"
+                   title="Upload excel file"
+                   name="excel_file"
+                   style="border: 1px solid black; padding: 5px;"
+                   required="required">
+            <p>
+            <input type="submit"
+                   value="Upload"
+                   style="border: 1px solid green; padding:5px; border-radius: 2px; cursor: pointer;">
 
-                    </tr>
-                </thead>
-                <tbody>
-
-                    {% for row in excel_data %}
-                    <tr>
-
-                        {% for cell in row %}
-                        <td>{{ cell }}</td>
-
-                        {% endfor %}
-
-                    </tr>
-
-                    {% endfor %}
-
-                </tbody>
-            </table>
+            
         </div>
     </form>
 

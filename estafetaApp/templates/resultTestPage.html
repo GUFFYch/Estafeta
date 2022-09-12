@@ -20,30 +20,30 @@
         </div>
         <!-- тут нужен вывод таблички -->
         <table class="uk-table uk-table-small uk-table-divider">
-            <thead>
-              <tr>
-                {% for row in excel_data_start %}
-                <th class="uk-text-truncate" uk-tooltip="{{ row }}">{{ row }}</th>
-                {% endfor %}
-      
-              </tr>
-            </thead>
-            <tbody>
-      
-              {% for row in excel_data %}
-              <tr>
-      
-                {% for cell in row %}
-                <td>{{ cell }}</td>
-      
-                {% endfor %}
-      
-              </tr>
-      
+          <thead>
+            <tr>
+              {% for row in excel_data_start %}
+              <th class="uk-text-truncate" uk-tooltip="{{ row }}">{{ row }}</th>
               {% endfor %}
-      
-            </tbody>
-          </table>
+    
+            </tr>
+          </thead>
+          <tbody>
+    
+            {% for row in excel_data %}
+            <tr>
+    
+              {% for cell in row %}
+              <td>{{ cell }}</td>
+    
+              {% endfor %}
+    
+            </tr>
+    
+            {% endfor %}
+    
+          </tbody>
+        </table>
     </div>
 </body>
 

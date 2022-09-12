@@ -125,15 +125,42 @@ def createtest_page(request):
 
 def finishtest_page(request):
     if request.user.is_authenticated and request.user.is_admin:
-        if request.method == 'POST' and 'Upload' in request.POST:
+        if request.method == 'POST':
             print(request.POST)
+
             test = Tests.objects.get(id = request.POST['testId'])
             test.is_active = False
+
+            print(request.FILES)
+
+            if request.FILES:
+                print("---------------OK---------------")
+                excel_file = request.FILES["excel_file"]
+
+                wb = openpyxl.load_workbook(excel_file)
+
+                worksheet = wb["Sheet1"]
+                # print(worksheet)
+
+                excel_data = list()
+
+                for row in worksheet.iter_rows():
+                    row_data = list()
+                    for cell in row:
+                        row_data.append(str(cell.value))
+                    excel_data.append(row_data)
+
+
+                url = str(test.id) + '.csv'
+                test.results_link = url
+                print(url)
+
             test.save()
 
             return HttpResponseRedirect('/finishtest/')
         return render(request, 'finishtest.html')
     return render(request, 'notadmin.html')
+
 
 def index_page(request):
     return render(request, 'index.html')
@@ -160,7 +187,21 @@ def resultstest_page(request, id):
     content = {}
     test = Tests.objects.get(id=id)
     content['test'] = test
+ 
+    
+
+    with open('2.csv', newline='') as f:
+        reader = csv.reader(f)
+        data = list(reader)
+    print(data)
+
+
+    content["excel_data_start"] = data[0]
+
+    content["excel_data"] = data[1::]
+
     return render(request, 'resultTestPage.html', content)
+
 
 def info_page(request):
     content = {}
