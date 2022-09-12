@@ -142,13 +142,13 @@ def finishtest_page(request):
     return render(request, 'notadmin.html')
 
 def index_page(request):
+    return render(request, 'index.html')
+
+def main_page(request):
     content = {}
-    if request.user.is_authenticated:
-        tests = Tests.objects.all()
-        content['tests'] = tests
-        return render(request, 'main.html', content)
-    else:
-        return render(request, 'index.html', content)
+    tests = Tests.objects.all()
+    content['tests'] = tests
+    return render(request, 'main.html', content)
 
 def results_page(request):
     content = {}
