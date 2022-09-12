@@ -14,7 +14,7 @@ class Tests(models.Model):
     time_start = models.TimeField(auto_now=False, auto_now_add=False) # время начала теста
     date_end = models.DateField(max_length=50) # дата конца теста
     time_end = models.TimeField(auto_now=False, auto_now_add=False) # время конца теста
-    is_active = models.BooleanField(default=False) # Окончен или нет
+    is_active = models.BooleanField(default=True) # Окончен или нет
     results_link = models.CharField(max_length=255)
 
 class Team(models.Model):

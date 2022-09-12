@@ -125,18 +125,12 @@ def createtest_page(request):
 
 def finishtest_page(request):
     if request.user.is_authenticated and request.user.is_admin:
-        if request.method == 'POST' and 'submitBtn' in request.POST:
+        if request.method == 'POST' and 'Upload' in request.POST:
+            print(request.POST)
+            test = Tests.objects.get(id = request.POST['testId'])
+            test.is_active = False
+            test.save()
 
-            # test = Tests()
-            # test.name = request.POST['name']
-            # test.subject = request.POST['subject']
-            # test.level = request.POST['level']
-            # test.link = request.POST['link']
-            # test.date_start = request.POST['date_start']
-            # test.time_start = request.POST['time_start']
-            # test.date_end = request.POST['date_end']
-            # test.time_end = request.POST['time_end']
-            # test.save()
             return HttpResponseRedirect('/finishtest/')
         return render(request, 'finishtest.html')
     return render(request, 'notadmin.html')
@@ -145,17 +139,28 @@ def index_page(request):
     return render(request, 'index.html')
 
 def main_page(request):
-    content = {}
-    tests = Tests.objects.all()
-    content['tests'] = tests
-    return render(request, 'main.html', content)
+    if (request.user.is_authenticated):
+        content = {}
+        tests = Tests.objects.all()
+        content['tests'] = tests
+        return render(request, 'main.html', content)
+    else:
+        return HttpResponseRedirect('/hello/')
 
-def results_page(request):
-    content = {}
-    tests = Tests.objects.all()
-    content['tests'] = tests
-    return render(request, 'results.html', content)
+def resultsall_page(request):
+    if (request.user.is_authenticated):
+        content = {}
+        tests = Tests.objects.all()
+        content['tests'] = tests
+        return render(request, 'results.html', content)
+    else:
+        return HttpResponseRedirect('/hello/')
 
+def resultstest_page(request, id):
+    content = {}
+    test = Tests.objects.get(id=id)
+    content['test'] = test
+    return render(request, 'resultTestPage.html', content)
 
 def info_page(request):
     content = {}

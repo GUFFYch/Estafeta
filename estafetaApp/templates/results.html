@@ -36,7 +36,7 @@
                     <div>
                         <img class="uk-border-rounded" style="height: 50px; width: 50px;"
                             src="{% static "images/estafeta_logo_Economics.jpg" %}">
-                        <p Class="uk-margin-remove">Mathematics</p>
+                        <p Class="uk-margin-remove">Economics</p>
                     </div>
                 </li>
                 <li class="uk-button uk-button-default uk-width-auto"
@@ -45,7 +45,7 @@
                     <div>
                         <img class="uk-border-rounded" style="height: 50px; width: 50px;"
                             src="{% static "images/estafeta_logo_Chemistry.jpg" %}">
-                        <p Class="uk-margin-remove">Mathematics</p>
+                        <p Class="uk-margin-remove">Science</p>
                     </div>
                 </li>
                 <li class="uk-button uk-button-default uk-width-auto"
@@ -54,7 +54,7 @@
                     <div>
                         <img class="uk-border-rounded" style="height: 50px; width: 50px;"
                             src="{% static "images/estafeta_logo_teams.jpg" %}">
-                        <p Class="uk-margin-remove">Mathematics</p>
+                        <p Class="uk-margin-remove">Business</p>
                     </div>
                 </li>
 
@@ -63,56 +63,57 @@
 
         <ul class="js-filter uk-child-width-1-2 uk-child-width-1-4 uk-text-center" uk-grid>
             {% for test in tests %}
+            {% if test.is_active == 0 %}
             <li data-subject="{{test.subject}}">
 
-                <a href="" class="uk-link-reset">
-                    <div class="uk-card uk-card-default uk-card-hover" style="border-radius: 20px;">
-                        <div class="uk-card-header">
-                            <div class="uk-grid-small uk-flex-middle" uk-grid>
-                                <div class="uk-width-auto">
-                                    {% if test.subject == "Mathematics" %}
-                                    <img class="uk-border-circle" width="40" height="40"
-                                        src="{% static "images/estafeta_logo_Maths.jpg" %}">
-                                    {% elif test.subject == "Economics" or test.subject == "Business"  %}
-                                    <img class="uk-border-circle" width="40" height="40"
-                                        src="{% static "images/estafeta_logo_Economics.jpg" %}">
-                                    {% elif test.subject == "Science"%}
-                                    <img class="uk-border-circle" width="40" height="40"
-                                        src="{% static "images/estafeta_logo_Chemistry.jpg" %}">
-                                    {% endif %}
-                                </div>
-                                <div class="uk-width-expand">
-                                    <h3 class="uk-card-title uk-margin-remove-bottom">{{test.subject}}</h3>
-                                </div>
+                <div class="uk-card uk-card-default uk-card-hover" style="border-radius: 20px;">
+                    <div class="uk-card-header">
+                        <div class="uk-grid-small uk-flex-middle" uk-grid>
+                            <div class="uk-width-auto">
+                                {% if test.subject == "Mathematics" %}
+                                <img class="uk-border-circle" width="40" height="40"
+                                    src="{% static "images/estafeta_logo_Maths.jpg" %}">
+                                {% elif test.subject == "Economics" or test.subject == "Business"  %}
+                                <img class="uk-border-circle" width="40" height="40"
+                                    src="{% static "images/estafeta_logo_Economics.jpg" %}">
+                                {% elif test.subject == "Science"%}
+                                <img class="uk-border-circle" width="40" height="40"
+                                    src="{% static "images/estafeta_logo_Chemistry.jpg" %}">
+                                {% endif %}
+                            </div>
+                            <div class="uk-width-expand">
+                                <h3 class="uk-card-title uk-margin-remove-bottom">{{test.subject}}</h3>
                             </div>
                         </div>
-                        <div class="uk-card-body uk-text-left">
-                            <ul uk-nav>
-                                <li class="uk-active uk-flex uk-flex-middle uk-margin-remove"><i
-                                        class="fa-solid fa-check uk-margin-small-right uk-border-circle"
-                                        style="font-size: 20px; color: white; background-color: blue; padding: 1%;"></i>
-                                    <p>type the text</p>
-                                </li>
-                                <li class="uk-active uk-flex uk-flex-middle uk-margin-remove"><i
-                                        class="fa-solid fa-check uk-margin-small-right uk-border-circle"
-                                        style="font-size: 20px; color: white; background-color: blue; padding: 1%;"></i>
-                                    <p>type the text</p>
-                                </li>
-                                <li class="uk-active uk-flex uk-flex-middle uk-margin-remove"><i
-                                        class="fa-solid fa-check uk-margin-small-right uk-border-circle"
-                                        style="font-size: 20px; color: white; background-color: blue; padding: 1%;"></i>
-                                    <p>type the text</p>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="uk-card-footer uk-text-center" style="border: none">
-                            <button class="uk-width-4-5 uk-button uk-button-primary uk-padding-small uk-border-pill"
-                                style="margin: 0 auto">Get started</button>
-
-                        </div>
                     </div>
-                </a>
+                    <div class="uk-card-body uk-text-left">
+                        <ul uk-nav>
+                            <li class="uk-active uk-flex uk-flex-middle uk-margin-remove"><i
+                                    class="fa-solid fa-check uk-margin-small-right uk-border-circle"
+                                    style="font-size: 20px; color: white; background-color: blue; padding: 1%;"></i>
+                                <p>type the text</p>
+                            </li>
+                            <li class="uk-active uk-flex uk-flex-middle uk-margin-remove"><i
+                                    class="fa-solid fa-check uk-margin-small-right uk-border-circle"
+                                    style="font-size: 20px; color: white; background-color: blue; padding: 1%;"></i>
+                                <p>type the text</p>
+                            </li>
+                            <li class="uk-active uk-flex uk-flex-middle uk-margin-remove"><i
+                                    class="fa-solid fa-check uk-margin-small-right uk-border-circle"
+                                    style="font-size: 20px; color: white; background-color: blue; padding: 1%;"></i>
+                                <p>type the text</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="uk-card-footer uk-text-center" style="border: none">
+                        <a href="/results/{{test.id}}"
+                            class="uk-width-4-5 uk-button uk-button-primary uk-padding-small uk-border-pill"
+                            style="margin: 0 auto">See results</a>
+
+                    </div>
+                </div>
             </li>
+            {% endif %}
             {% endfor %}
 
         </ul>

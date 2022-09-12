@@ -35,7 +35,8 @@ urlpatterns = [
     path('finishtest/', views.finishtest_page),
     path('profile/<name>/', views.profileTemplate_page),
     path('table/', views.table_page),
-    path('results/', views.results_page),
+    path('results/', views.resultsall_page),
+    path('results/<id>', views.resultstest_page),
     path('results/info/', views.info_page),
 
 ]

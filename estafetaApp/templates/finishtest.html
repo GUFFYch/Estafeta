@@ -13,61 +13,62 @@
 
 <body>
     {% include 'menu.html' %}
-    <h1 class="uk-text-center" style="margin: 1% auto">Finish test</h1>
-    <div class="uk-width-3-5" style="margin: 2% auto">
-        <fieldset class="uk-fieldset">
+    <form method="POST">
+        <h1 class="uk-text-center" style="margin: 1% auto">Finish test</h1>
+        <div class="uk-width-3-5" style="margin: 2% auto">
+            <fieldset class="uk-fieldset">
 
-            <div class="uk-flex uk-flex-top uk-flex-between uk-text-center uk-margin-medium-bottom">
+                <div class="uk-flex uk-flex-top uk-flex-between uk-text-center uk-margin-medium-bottom">
 
-                <div class="uk-width-1-2 uk-text-left">
-                    <label>name</label>
-                    <br>
-                    <input type="text" name="name" placeholder="name of test" id="searchPole"
-                        class="uk-input uk-width-5-6" maxlength="100" required>
+                    <div class="uk-width-1-2 uk-text-left">
+                        <label>name</label>
+                        <br>
+                        <input type="text" name="name" placeholder="name of test" id="searchPole"
+                            class="uk-input uk-width-5-6" maxlength="100" required>
+                    </div>
+                    <div class="uk-width-1-2" id="testsList">
+
+                    </div>
                 </div>
-                <div class="uk-width-1-2" id="testsList">
-
-                </div>
-            </div>
-        </fieldset>
-    </div>
-    <div class="uk-width-3-5" style="margin: 2% auto">
-        <form method="post" enctype="multipart/form-data">
+            </fieldset>
+        </div>
+        <div class="uk-width-3-5" style="margin: 2% auto">
             {% csrf_token %}
             <div uk-form-custom="target: true" class="uk-wid">
                 <input type="file">
-                <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" name="excel_file" required="required">
+                <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" name="excel_file"
+                    required="required">
             </div>
             <button class="uk-button uk-button-default" name="Upload">Submit</button>
-        </form>
-        <hr>
+            <hr>
 
-        <table class="uk-table uk-table-small uk-table-divider">
-            <thead>
-                <tr>
-                    {% for row in excel_data_start %}
-                    <th class="uk-text-truncate" uk-tooltip="{{ row }}">{{ row }}</th>
+            <table class="uk-table uk-table-small uk-table-divider">
+                <thead>
+                    <tr>
+                        {% for row in excel_data_start %}
+                        <th class="uk-text-truncate" uk-tooltip="{{ row }}">{{ row }}</th>
+                        {% endfor %}
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for row in excel_data %}
+                    <tr>
+
+                        {% for cell in row %}
+                        <td>{{ cell }}</td>
+
+                        {% endfor %}
+
+                    </tr>
+
                     {% endfor %}
 
-                </tr>
-            </thead>
-            <tbody>
-
-                {% for row in excel_data %}
-                <tr>
-
-                    {% for cell in row %}
-                    <td>{{ cell }}</td>
-
-                    {% endfor %}
-
-                </tr>
-
-                {% endfor %}
-
-            </tbody>
-        </table>
-    </div>
+                </tbody>
+            </table>
+        </div>
+    </form>
 
 
 </body>

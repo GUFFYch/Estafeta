@@ -38,10 +38,12 @@
         <h1>Our subjects</h1>
         <p class="uk-text-meta">Choose subject you want and challenge yourself</p>
         <div class="uk-flex uk-flex-middle uk-flex-center uk-width-1-4" style="margin: 2% auto">
-            <p class="uk-width-1-3" style="margin: 0">Choose your country</p>
-            <select class="uk-select uk-width-1-4 uk-margin-medium-left">
-                <option>Option 01</option>
-                <option>Option 02</option>
+            <p class="uk-width-auto" style="margin: 0 5% 0 0">Choose your country</p>
+            <select class="uk-select uk-border-pill uk-width-auto">
+                <option>🇺🇸 USA</option>
+                <option>🇷🇺 RUS</option>
+                <option>🇧🇷 BRA</option>
+                <option>🇬🇧 GBR</option>
             </select>
         </div>
         <!-- <p>{% static "images/estafeta_logo_Maths.jpg" %}</p> -->
@@ -193,7 +195,7 @@
 
     <!-- section start -->
     <div class="uk-section uk-text-center uk-margin uk-width-4-5" style="margin: 0 auto">
-        <p class="uk-text-primary">ABOUT US</p>
+        <p class="uk-text-primary" id="about">ABOUT US</p>
         <h1>Information on contests format</h1>
         <!-- cards section start -->
         <div class="uk-flex uk-flex-middle uk-flex-between uk-width-3-5" style="margin: 2% auto">
@@ -442,8 +444,7 @@
     <!-- section end -->
 
     <div style="float: right; position: relative; right: 15%">
-        <img src="{% static "images/estafeta_index_7.jpg" %}"
-            style="z-index: -1; height: 500px; width: 500px;"></img>
+        <img src="{% static "images/estafeta_index_7.jpg" %}" style="z-index: -1; height: 500px; width: 500px;"></img>
     </div>
     <!-- section start -->
     <div class="section uk-width-1 uk-light" style="margin-top: 10%; background-color: blue;">
@@ -458,7 +459,8 @@
             </div>
         </div>
         <div class="uk-width-1 uk-flex uk-flex-around uk-flex-middle" style="background-color: blue">
-            <p style="color: white"> <img src="{% static "images/estafeta_logo.jpg" %}" class="uk-border-circle" style="border:1px solid white" width="40" height="40" alt=""> Academy</p>
+            <p style="color: white"> <img src="{% static "images/estafeta_logo.jpg" %}" class="uk-border-circle"
+                    style="border:1px solid white" width="40" height="40" alt=""> Academy</p>
             <p style="color: white">© 2022 Academy, Inc. All Rights Reserved. </p>
         </div>
     </div>
