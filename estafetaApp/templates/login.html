@@ -38,35 +38,24 @@
         font-size: 18px;
         line-height: 30px;
         text-align: center;
+        margin: 0 auto;
         color: #6F6C90;
     }
 </style>
 
 <body>
 
-    <br>
-    <br>
-    <br>
+    {% load static %}
 
-    <div style="width: 10vw; margin: auto;">
-
-            <header class="uk-comment-header">
-                <div class="uk-grid-medium uk-flex-middle" uk-grid>
-                    <div class="uk-width-auto">
-                        <img class="uk-comment-avatar" src="https://cdn-icons-png.flaticon.com/512/5448/5448104.png" width="80" height="80" alt="">
-                    </div>
-                    <div class="uk-width-expand">
-                        <h1 class="uk-margin-remove">Academy</h4>
-                        
-                    </div>
-                </div>
-            </header>
-
+    <div class="uk-width-2-5 uk-flex uk-flex-middle uk-flex-center" style="margin: 5% auto 0;">
+        <img class="uk-comment-avatar" src="{% static "images/estafeta_logo.jpg" %}" width="80" height="80" alt="">
+        <h1 class="uk-margin-remove uk-text-bold">Academy</h4>
     </div>
 
 
     <p class="larg">Sign in to your account</p>
-    <p class="small">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+    <p class="small uk-width-1-4" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+        et dolore.</p>
 
     <br>
     <br>
@@ -74,38 +63,30 @@
     <div class="container-main">
         <br>
         <br>
-            <form method="POST" action="." id="signin-form" class="uk-width-4-5 uk-form-stacked">
-                {% csrf_token %}
-                <div style="width: 80%; margin: auto;">
-                    <!-- <div class="uk-flex-column inputs uk-margin-medium-bottom">
-                        <label>Почта</label>
-                        <input type="text" name="email" class="uk-input uk-border uk-border-rounded"
-                            placeholder="email@mail.com">
-                    </div> -->
+        <form method="POST" action="." id="signin-form" class="uk-width-4-5 uk-form-stacked" style=" margin: 0 auto;">
+            {% csrf_token %}
+            <div style="width: 80%; margin: 0 auto;">
 
-                    <div class="uk-margin">
-                        <label class="uk-form-label" for="form-stacked-text">Login</label>
-                        <div class="uk-form-controls">
-                            <input class="uk-input" id="form-stacked-text" type="email" placeholder="email@mail.com" name="email">
-                        </div>
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text">Email adress</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input uk-border-pill" id="form-stacked-text" type="email"
+                            placeholder="email@mail.com" name="email">
                     </div>
-
-                    <!-- <div class="uk-flex-column inputs">
-                        <label>Пароль</label>
-                        <input type="password" name="password" placeholder="Password..."
-                            class="uk-input uk-border uk-border-rounded">
-                    </div> -->
-                    <div class="uk-margin">
-                        <label class="uk-form-label" for="form-stacked-text">Password</label>
-                        <div class="uk-form-controls">
-                            <input class="uk-input" id="form-stacked-text" type="password" name="password" placeholder="Password...">
-                        </div>
-                    </div>
-                <br>
-                <button class="uk-button uk-button-secondary uk-width-1-2 uk-margin" type="submit"
-                    name="btnform2">Войти</button>
                 </div>
-            </form>
+
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text">Password</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input uk-border-pill" id="form-stacked-text" type="password" name="password"
+                            placeholder="Password...">
+                    </div>
+                </div>
+                <br>
+                <button class="uk-button uk-button-primary uk-border-pill uk-width-1 uk-margin" type="submit"
+                    name="btnform2">Login</button>
+            </div>
+        </form>
 
     </div>
 
