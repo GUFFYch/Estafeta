@@ -132,6 +132,7 @@ def finishtest_page(request):
             test.is_active = False
 
             print(request.FILES)
+            
 
             if request.FILES:
                 print("---------------OK---------------")
@@ -150,6 +151,14 @@ def finishtest_page(request):
                         row_data.append(str(cell.value))
                     excel_data.append(row_data)
 
+                # file_name = FileSystemStorage.save(file.name, file)
+                print(excel_data)
+
+               
+
+                with open(str(test.id)+'.csv', 'w', newline='') as f:
+                    writer = csv.writer(f)
+                    writer.writerows(excel_data)
 
                 url = str(test.id) + '.csv'
                 test.results_link = url
@@ -160,7 +169,6 @@ def finishtest_page(request):
             return HttpResponseRedirect('/finishtest/')
         return render(request, 'finishtest.html')
     return render(request, 'notadmin.html')
-
 
 def index_page(request):
     return render(request, 'index.html')
@@ -188,19 +196,21 @@ def resultstest_page(request, id):
     test = Tests.objects.get(id=id)
     content['test'] = test
  
-    
-
-    with open('2.csv', newline='') as f:
-        reader = csv.reader(f)
-        data = list(reader)
-    print(data)
+    try:
+        with open(str(test.id)+'.csv', newline='') as f:
+            reader = csv.reader(f)
+            data = list(reader)
 
 
-    content["excel_data_start"] = data[0]
+        content["excel_data_start"] = data[0]
 
-    content["excel_data"] = data[1::]
+        content["excel_data"] = data[1::]
 
-    return render(request, 'resultTestPage.html', content)
+        return render(request, 'resultTestPage.html', content)
+    except:
+        return HttpResponseRedirect('/')
+
+
 
 
 def info_page(request):
